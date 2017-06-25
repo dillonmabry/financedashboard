@@ -94,7 +94,7 @@
 	<div class="navbar navbar-default navbar-fixed-bottom">
 		<div class="container text-center">
 			<p class="navbar-text navbar-center">
-				Personal Finance Planner © 2017
+				Personal Finance Planner 2017
 			</p>
 		</div>
 	</div>
