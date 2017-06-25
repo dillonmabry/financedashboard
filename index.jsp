@@ -7,6 +7,7 @@
 <link href="css/main-theme.min.css" rel="stylesheet">
 <link href="css/dashboard.css" rel="stylesheet">
 <link href="css/toastr.min.css" rel="stylesheet">
+<link rel="icon" type="image/png" href="img/favicon.png" />
 </head>
 <body>
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -22,7 +23,12 @@
 			<a class="navbar-brand text-center center-block" href="#">Personal Finance Dashboard</a>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.jsp">Sign-In</a></li>
+					<li class="active">
+						<a href="index.jsp">
+						<span class="glyphicon glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;
+							Sign-In
+						</a>
+					</li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
@@ -84,7 +90,7 @@
 	<!-- Footer -->
 	<div class="navbar navbar-default navbar-fixed-bottom">
 	    <div class="container text-center">
-	      <p class="navbar-text navbar-center">Personal Finance Planner 2017
+	      <p class="navbar-text navbar-center">Personal Finance Planner © 2017
 	      </p>
 	    </div>
 	</div>

@@ -34,7 +34,9 @@
 					<li id="settingsMenu"><a href="preferences.jsp">Settings</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li id="signOut"><a href="#">Logout</a></li>
+					<li id="signOut"><a href="#"><span class="glyphicon glyphicon glyphicon-log-out">&nbsp;
+						</span>Logout</a>
+					</li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
@@ -98,7 +100,7 @@
 	<div class="navbar navbar-default navbar-fixed-bottom">
 		<div class="container text-center">
 			<p class="navbar-text navbar-center">
-				Personal Finance Planner 2017
+				Personal Finance Planner © 2017
 			</p>
 		</div>
 	</div>
