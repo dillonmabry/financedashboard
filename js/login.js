@@ -79,7 +79,6 @@
         });
       })();
 
-
 	//on sign
 	function onSignIn(user) {	
 		setTimeout(function(){ 

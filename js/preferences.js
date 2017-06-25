@@ -54,7 +54,6 @@ function getUser(userId, database) {
 		  email = user.email;
 		  emailVerified = user.emailVerified;
 		  uid = user.uid;
-		  console.log(user.uid);
 		  return user;
 	  }
 }
