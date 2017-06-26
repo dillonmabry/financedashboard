@@ -7,7 +7,6 @@
 <link href="css/main-theme.min.css" rel="stylesheet">
 <link href="css/dashboard.css" rel="stylesheet">
 <link href="css/toastr.min.css" rel="stylesheet">
-<link rel="icon" type="image/png" href="img/favicon.png" />
 </head>
 <body>
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -62,7 +61,7 @@
 			</form>
 			<hr/>
 				<div class="row">
-					Need to register?&nbsp;
+					<label for="register">Need to register?&nbsp;</label>
 					<button class="btn btn-default btn-sm" id="register">Register Now</button>
 					<br/>
 				</div>

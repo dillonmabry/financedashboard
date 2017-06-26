@@ -13,20 +13,22 @@ $(document).ready(function(){
 			// get unique report for user
 			pushReports(userId);
 			getDashboard(user, database);
+			isBusy(false);
 			// listen to report selection
 			$("#reportSelect").on("change", function() {
+				isBusy(true);
 				var user = firebase.auth().currentUser;
 				var database = firebase.database();
 				getDashboard(user, database);
+				isBusy(false);
 			});
-
-			isBusy(false);
+			
 		}
 	});
 
 });
 
-
+//get current user
 function getUser(userId, database) {
 	  var user = firebase.auth().currentUser;
 	  var email, uid, emailVerified;
@@ -38,6 +40,7 @@ function getUser(userId, database) {
 	  }
 }
 
+//load reports
 function pushReports(userId) {
 	//monitor/load report changes
   	var reportRef = firebase.database().ref('reports/' + userId);
@@ -66,8 +69,6 @@ function pushReports(userId) {
 	});
 }
 
-
-
 function toastInfo(subject, message) {
 
 	toastr.options = {
@@ -90,6 +91,7 @@ function toastInfo(subject, message) {
 	Command: toastr["success"](message, subject)
 }
 
+//ajax loader
 function isBusy(load) {
 	if(load) {
 		$(".loading").show();

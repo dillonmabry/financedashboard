@@ -11,6 +11,7 @@
 	href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.5.3/datepicker.min.css">
 </head>
 <body>
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -57,19 +58,29 @@
 							class="form-control" id="reportSelect"></select>
 					</div>
 				</div>
+				<div class="col-sm-8">
+					<div class="form-group text-right">
+						<label id="reportRange"></label>
+					</div>
+				</div>
 				<!-- <button id='runReport' class="btn btn-primary center-block">Run Report</button> -->
 				<div class="row">
 					<div id="mainReport" class="col-sm-12 main">
 						<div class="well">
 							<div class="row">
-								<div class="col-sm-6">
+								<div class="col-sm-4">
 									<h4 class="text-left" id='conditionLabel'></h4>
 								</div>
-								<div class="col-sm-6">
-									<h4 class="text-right" id="reportName"></h4>
+								<div class="col-sm-4">
+									<h4 class="text-center">User Reports</h4>
+								</div>
+								<div class="col-sm-4">
+									<button id='addNewPeriod' class="btn btn-default btn-sm pull-right">
+										<span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Add New Period
+									</button>
 								</div>
 							</div>
-							<br />
+							<hr />
 							<table id="mainTable" class="display" cellspacing="0"
 								width="100%">
 								<thead>
@@ -104,6 +115,41 @@
 			</p>
 		</div>
 	</div>
+	
+	<!-- Add Period modal -->
+	<div class="modal fade" id="addPeriodModal" tabindex="-1" role="dialog" aria-labelledby="addPeriodModal" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" >Add New Pay Period</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form>
+	          <div class="form-group">
+		          <label for="periodSpan" class="form-control-label">Pay Period Date: </label>
+		            <div class='input-group date'>
+						<input type='text' class="form-control" id='periodSpan' /> 
+							<span  class="input-group-addon">
+							<span class="glyphicon glyphicon-calendar"></span>
+						</span>
+					</div>
+	          </div>
+	          <div class="form-group">
+	            <label for="message-text" class="form-control-label">Message:</label>
+	            <textarea class="form-control" id="message-text"></textarea>
+	          </div>
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" id="confirmAddPeriod" class="btn btn-primary">Confirm</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 	<!-- Scripts and dependencies -->
 	<script src="js/jquery-3.1.0.min.js"></script>
@@ -128,12 +174,13 @@
 		src="//cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
 	<script
 		src="//cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.5.3/datepicker.min.js"></script>
 	<script src="js/toastr.min.js"></script>
 	<script src="js/config.js"></script>
 	<script src="js/logout.js"></script>
 	<script src="js/dashboard.js"></script>
 	<script src="js/common.js"></script>
-
+	
 	<script>
 	$('.navbar li').click(function(e) {
 	    $('.navbar li.active').removeClass('active');

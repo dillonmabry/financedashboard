@@ -16,6 +16,7 @@ function getDashboard(user, database) {
 	    //get pay periods/reports
 		var reports = snapshot.val().balance_reports;
 		var periods;
+		var datePeriods = [];
 	    //var periods = snapshot.val().pay_periods;
 	    var startPeriod, endPeriod;
 	    
@@ -28,11 +29,11 @@ function getDashboard(user, database) {
 		    	}
 			}
 	    }  
-	    
+
 	    //populate condition and main table with pay periods
 	    for (var key in periods) {
 	    	  if (periods.hasOwnProperty(key)) {
-	    		 
+	    		datePeriods.push(key);
 	    		//calculate after expenses
 	    		var expenses = (periods[key].expenses + periods[key].utilities 
 	    				+ periods[key].other_expenses + periods[key].base_rent);
@@ -57,6 +58,11 @@ function getDashboard(user, database) {
 		  			 +'</tr>$');
 		    	  }
 	    	}
+	    	
+	    	//set report range info period
+	    	$("#reportRange").html("Start Period: "+datePeriods[0]+"<br/><br/>End Period: "
+	    			+datePeriods[datePeriods.length-1]);  
+	    	
 		    //get the current reports
 		    $('#mainTable').DataTable({
 	        	"oLanguage": {
@@ -79,6 +85,19 @@ function getReport() {
 		return currRep;
 	}
 }
+
+//listen to add new period
+$("#addNewPeriod").click(function(){
+	$('#addPeriodModal').on('hidden.bs.modal', function () {
+	    $(this).find('form').trigger('reset');
+//	    $("#participantTable td").parent().remove();
+//	    $("#sponsorTable td").parent().remove();
+//	    $("#addSponsorBtn").prop("disabled", false);
+//	    $("#addParticipantsBtn").prop("disabled", false);
+	});
+	$('#addPeriodModal').modal({backdrop: 'static', keyboard: true})  
+	$("#addPeriodModal").modal("show");
+});
 
 
 
