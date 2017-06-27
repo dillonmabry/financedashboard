@@ -152,8 +152,8 @@
 	</div>
 
 	<!-- Scripts and dependencies -->
-	<script src="js/jquery-3.1.0.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<script src="js/scripts/jquery-3.1.0.min.js"></script>
+	<script src="js/scripts/bootstrap.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-auth.js"></script>
@@ -175,10 +175,10 @@
 	<script
 		src="//cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.5.3/datepicker.min.js"></script>
-	<script src="js/toastr.min.js"></script>
-	<script src="js/config.js"></script>
-	<script src="js/logout.js"></script>
-	<script src="js/dashboard.js"></script>
+	<script src="js/scripts/toastr.min.js"></script>
+	<script src="js/firebase/config.js"></script>
+	<script src="js/Screens/authentication/logout.js"></script>
+	<script src="js/Screens/dashboard/dashboard.js"></script>
 	<script src="js/common.js"></script>
 	
 	<script>

@@ -45,9 +45,10 @@
             }
             // Register user    
             firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user){
-            	//alert("Success! New user: "+user.email+" registered!");
+            	isBusy(true);
             	user.sendEmailVerification().catch(function(error) { alert(error);});
-            	alert("Success! New user: "+user.email+" registered!");
+            	toastInfo("Success","User successfully created");
+            	isBusy(false);
             })
               .catch(function(error) {
                 if (error.code === 'auth/email-already-in-use') {
@@ -57,14 +58,17 @@
                       firebase.auth().currentUser.link(credential)
                         .then(function(user) {
                           $(".alert-danger").hide();
+                          isBusy(false);
                           alert("Account linking success", user);
                         }, function(error) {
                         	alert("Account linking error", error);
+                        	isBusy(false);
                         	return false;
                         });
                     });
                 } else {
-                	return false;
+                	$(".alert-danger").html(""+error).show();
+                	isBusy(false);
                 }
               });
             
@@ -83,7 +87,36 @@
 	function onSignIn(user) {	
 		setTimeout(function(){ 
 			window.location.href = 'dashboard.jsp';
-		}, 500);
+		}, 1500);
 	}
 	
+	//ajax loader
+	function isBusy(load) {
+		if(load) {
+			$(".loading").show();
+		} else {
+			$(".loading").hide();
+		}
+	}
 	
+	function toastInfo(subject, message) {
+
+		toastr.options = {
+		  "closeButton": false,
+		  "debug": false,
+		  "newestOnTop": false,
+		  "progressBar": false,
+		  "positionClass": "toast-bottom-left",
+		  "preventDuplicates": false,
+		  "onclick": null,
+		  "showDuration": "300",
+		  "hideDuration": "1000",
+		  "timeOut": "1000",
+		  "extendedTimeOut": "1000",
+		  "showEasing": "swing",
+		  "hideEasing": "linear",
+		  "showMethod": "fadeIn",
+		  "hideMethod": "fadeOut"
+		}
+		Command: toastr["success"](message, subject);
+	}
