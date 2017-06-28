@@ -39,7 +39,6 @@
 			<h3>Dashboard Login</h3>
 			<div id="app" class="col-md-6 col-md-offset-3">
 			<hr/>
-			<!-- <button id="signInBtn" class="btn btn-default">Authenticate</button> -->
 			<form id="form">
 				<div class="form-group">
 					<label for="email">Email: </label>
