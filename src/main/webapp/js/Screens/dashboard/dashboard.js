@@ -75,8 +75,8 @@ function getDashboard(user, database) {
 				$("#conditionLabel").html("Condition: <span class='label label-danger'>Critical</span>");
 			}
 	    	//set report range info period
-	    	$("#reportRange").html("Start Period: "+datePeriods[0]+"<br/><br/>End Period: "
-	    			+datePeriods[datePeriods.length-1]);  
+	    	$("#reportRange").html("Start Period: "+sortedDates[0].key+"<br/><br/>End Period: "
+	    			+sortedDates[sortedDates.length-1].key);  
 	    	
 		    //get the current reports
 		    $('#mainTable').DataTable({
