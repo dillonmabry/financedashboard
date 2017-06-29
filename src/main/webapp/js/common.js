@@ -55,6 +55,7 @@ function pushReports(userId) {
 		}		
 		var reports = snapshot.val().balance_reports;
 	    //get pay periods and populate reports
+		$('#reportSelect').empty();
 	    for (var key in reports) {
 		    if (reports.hasOwnProperty(key)) {
 		    	var output = [];

@@ -11,7 +11,8 @@
 	href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.5.3/datepicker.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.43/css/bootstrap-datetimepicker.min.css">
 </head>
 <body>
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -75,7 +76,7 @@
 									<h4 class="text-center">User Reports</h4>
 								</div>
 								<div class="col-sm-4">
-									<button id='addNewPeriod' class="btn btn-default btn-sm pull-right">
+									<button id='addNewPeriod' class="btn btn-primary btn-sm pull-right">
 										<span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Add New Period
 									</button>
 								</div>
@@ -122,20 +123,71 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	        <form>
+	        <form id='addPeriodForm'>
+	        <!-- Period Date -->
 	          <div class="form-group">
-		          <label for="periodSpan" class="form-control-label">Pay Period Date: </label>
-		            <div class='input-group date'>
-						<input type='text' class="form-control" id='periodSpan' /> 
-							<span  class="input-group-addon">
-							<span class="glyphicon glyphicon-calendar"></span>
-						</span>
+		          <label for="periodSpanInput" class="form-control-label">Pay Period Date: </label>
+		            <div class='input-group date' id='periodSpan'>
+						<input type='text' class="form-control" id='pay-period' required> 
+						<span class="input-group-addon">
+	                        <span class="glyphicon glyphicon-calendar"></span>
+	                    </span>
 					</div>
 	          </div>
+			  <!-- Gross Income -->
 	          <div class="form-group">
-	            <label for="message-text" class="form-control-label">Message:</label>
-	            <textarea class="form-control" id="message-text"></textarea>
-	          </div>
+			        <label for="base-income">Gross Income:</label>
+				    <div class="input-group"> 
+				        <span class="input-group-addon">$</span>
+				        <input type="number" value="1500" min="0" step="100" data-number-to-fixed="2" 
+				        data-number-stepfactor="50" class="form-control currency" id="base-income" required/>
+				   	</div>
+			   </div>
+			  <!-- Net Income -->
+	          <div class="form-group">
+			        <label for="net-income">Net Income:</label>
+				    <div class="input-group"> 
+				        <span class="input-group-addon">$</span>
+				        <input type="number" value="1000" min="0" step="100" data-number-to-fixed="2" 
+				        data-number-stepfactor="50" class="form-control currency" id="net-income" required/>
+				   	</div>
+			   </div>
+			   <!-- Base Rent -->
+	          <div class="form-group">
+			        <label for="base-rent">Base Rent:</label>
+				    <div class="input-group"> 
+				        <span class="input-group-addon">$</span>
+				        <input type="number" value="1000" min="0" step="100" data-number-to-fixed="2" 
+				        data-number-stepfactor="50" class="form-control currency" id="base-rent" required/>
+				   	</div>
+			   </div>
+			    <!-- Expenses -->
+	          <div class="form-group">
+			        <label for="base-expenses">Expenses (other than rent):</label>
+				    <div class="input-group"> 
+				        <span class="input-group-addon">$</span>
+				        <input type="number" value="500" min="0" step="50" data-number-to-fixed="2" 
+				        data-number-stepfactor="50" class="form-control currency" id="base-expenses" required/>
+				   	</div>
+			   </div>
+			   <!-- Other Expenses -->
+	          <div class="form-group">
+			        <label for="other-expenses">Other Expenses (enter 0 if none):</label>
+				    <div class="input-group"> 
+				        <span class="input-group-addon">$</span>
+				        <input type="number" value="100" min="0" step="25" data-number-to-fixed="2" 
+				        data-number-stepfactor="50" class="form-control currency" id="other-expenses" required/>
+				   	</div>
+			   </div>
+			   <!-- Utilities -->
+	          <div class="form-group">
+			        <label for="utilities-expenses">Utilities Expenses:</label>
+				    <div class="input-group"> 
+				        <span class="input-group-addon">$</span>
+				        <input type="number" value="200" min="0" step="25" data-number-to-fixed="2" 
+				        data-number-stepfactor="25" class="form-control currency" id="utilities-expenses" required/>
+				   	</div>
+			   </div>
 	        </form>
 	      </div>
 	      <div class="modal-footer">
@@ -169,7 +221,10 @@
 		src="//cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
 	<script
 		src="//cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.5.3/datepicker.min.js"></script>
+		<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.43/js/bootstrap-datetimepicker.min.js"></script>
 	<script src="js/scripts/toastr.min.js"></script>
 	<script src="js/firebase/config.js"></script>
 	<script src="js/Screens/authentication/logout.js"></script>
