@@ -157,7 +157,7 @@
 			        <label for="base-rent">Base Rent:</label>
 				    <div class="input-group"> 
 				        <span class="input-group-addon">$</span>
-				        <input type="number" value="1000" min="0" step="100" data-number-to-fixed="2" 
+				        <input type="number" value="500" min="0" step="100" data-number-to-fixed="2" 
 				        data-number-stepfactor="50" class="form-control currency" id="base-rent" required/>
 				   	</div>
 			   </div>
@@ -166,7 +166,7 @@
 			        <label for="base-expenses">Expenses (other than rent):</label>
 				    <div class="input-group"> 
 				        <span class="input-group-addon">$</span>
-				        <input type="number" value="500" min="0" step="50" data-number-to-fixed="2" 
+				        <input type="number" value="250" min="0" step="50" data-number-to-fixed="2" 
 				        data-number-stepfactor="50" class="form-control currency" id="base-expenses" required/>
 				   	</div>
 			   </div>
@@ -184,7 +184,7 @@
 			        <label for="utilities-expenses">Utilities Expenses:</label>
 				    <div class="input-group"> 
 				        <span class="input-group-addon">$</span>
-				        <input type="number" value="200" min="0" step="25" data-number-to-fixed="2" 
+				        <input type="number" value="100" min="0" step="25" data-number-to-fixed="2" 
 				        data-number-stepfactor="25" class="form-control currency" id="utilities-expenses" required/>
 				   	</div>
 			   </div>

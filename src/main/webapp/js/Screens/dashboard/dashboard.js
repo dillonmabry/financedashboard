@@ -55,7 +55,6 @@ function getDashboard(user, database) {
 		  			 +'</tr>$');
 		    	  }
 	    	}
-	    	console.log(JSON.stringify(datePeriods));
 		    var sortedDates = datePeriods;
 		    sortedDates.sort(function(a, b) {
 		        return new Date( b.key ) < new Date( a.key );
@@ -130,15 +129,15 @@ $("#addNewPeriod").click(function(){
 		var dtoSave = {
 				pay_period: $("#pay-period").val(),
 				base_rent: $("#base-rent").val(),
-				expenses: $("#base-income").val(),
+				expenses: $("#base-expenses").val(),
 				gross_income: $("#base-income").val(),
 				net_income: $("#net-income").val(),
 				other_expenses: $("#other-expenses").val(),
 				utilities: $("#utilities-expenses").val(),
 		}
-		console.log(JSON.stringify(dtoSave));
+		//insert new record
 		writeNewPeriod(userId, reportName, dtoSave);
-		
+		//reset form and hide modal
 		$(this).find('form').trigger('reset');
 		$("#addPeriodModal").modal("hide");
 		toastInfo("Success","New pay period added to report");
@@ -178,7 +177,7 @@ function writeNewPeriod(userId, reportName, dto) {
 	    }
 	});
 	//reload dashboard
-	var currUser = getUser(userId, database);
+	var currUser = getUser();
 	getDashboard(currUser, database);
 }
 
@@ -206,7 +205,7 @@ function toastInfo(subject, message) {
 }
 
 //get current user
-function getUser(userId, database) {
+function getUser() {
 	  var user = firebase.auth().currentUser;
 	  var email, uid, emailVerified;
 	  if(user != null) {

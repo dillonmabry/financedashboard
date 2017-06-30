@@ -1,6 +1,5 @@
 //auth listener
 $(document).ready(function(){
-	
 	//check current user
 	firebase.auth().onAuthStateChanged(function(user) {
 		if (user) {
@@ -9,7 +8,7 @@ $(document).ready(function(){
 			var userId = firebase.auth().currentUser.uid;
 			var database = firebase.database();
 			// ensure user
-			var user = getUser(userId, database);
+			var user = getUser();
 			// get unique report for user
 			pushReports(userId);
 			getDashboard(user, database);
@@ -29,7 +28,7 @@ $(document).ready(function(){
 });
 
 //get current user
-function getUser(userId, database) {
+function getUser() {
 	  var user = firebase.auth().currentUser;
 	  var email, uid, emailVerified;
 	  if(user != null) {
@@ -55,7 +54,7 @@ function pushReports(userId) {
 		}		
 		var reports = snapshot.val().balance_reports;
 	    //get pay periods and populate reports
-		$('#reportSelect').empty();
+		//$('#reportSelect').empty();
 	    for (var key in reports) {
 		    if (reports.hasOwnProperty(key)) {
 		    	var output = [];
