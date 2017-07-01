@@ -31,6 +31,9 @@
 					<li class="active" id="settingsMenu"><a href="preferences.jsp">Settings</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					<li class="text-right">
+						<a id="userInfo" class="text-muted"></a>
+					</li>
 					<li id="signOut"><a href="#"><span class="glyphicon glyphicon glyphicon-log-out">&nbsp;
 						</span>Logout</a>
 					</li>
@@ -80,9 +83,6 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="text-center">
-					<p id="userInfo" class="text-muted"></p>
 				</div>
 			</div>
 		</div>

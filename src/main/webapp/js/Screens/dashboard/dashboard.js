@@ -5,7 +5,7 @@ function getDashboard(user, database) {
 		}
 	$('#mainTable tbody > tr').remove();
 	//current user info
-	$("#userInfo").html("Current user - "+user.email);
+	$("#userInfo").html(user.email);
 	
 	//retrieve data
 	var reportRef = firebase.database().ref('reports/' + user.uid);

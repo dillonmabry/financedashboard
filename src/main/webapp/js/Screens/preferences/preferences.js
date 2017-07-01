@@ -10,7 +10,7 @@ $(document).ready(function(){
 			  var database = firebase.database();
 			  //ensure user
 			  var user = getUser(userId, database);
-			  $("#userInfo").html("Current user - "+user.email);
+			  $("#userInfo").html(user.email);
 			  //TODO: add username
 			  if(user.displayName == null) {
 				  $("#userName").val("Not Created");

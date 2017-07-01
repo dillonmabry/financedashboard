@@ -1,5 +1,6 @@
 //auth listener
 $(document).ready(function(){
+
 	//check current user
 	firebase.auth().onAuthStateChanged(function(user) {
 		if (user) {
@@ -41,6 +42,7 @@ function getUser() {
 
 //load reports
 function pushReports(userId) {
+	
 	//monitor/load report changes
   	var reportRef = firebase.database().ref('reports/' + userId);
 	reportRef.on('value', function(snapshot) {
@@ -54,18 +56,20 @@ function pushReports(userId) {
 		}		
 		var reports = snapshot.val().balance_reports;
 	    //get pay periods and populate reports
-		//$('#reportSelect').empty();
-	    for (var key in reports) {
-		    if (reports.hasOwnProperty(key)) {
-		    	var output = [];
-			    	$.each(reports[key], function(key, value) {
-			    		if(key == "report_name") {
-			    			output.push('<option value="'+ value +'">'+ value+'</option>');
-			    		}
-			    	});
-		    	$('#reportSelect').append(output.join(''));
-			}
-	    }
+		//only push if reports are empty
+		if($("#reportSelect").val() == null) {
+		    for (var key in reports) {
+			    if (reports.hasOwnProperty(key)) {
+			    	var output = [];
+				    	$.each(reports[key], function(key, value) {
+				    		if(key == "report_name") {
+				    			output.push('<option value="'+ value +'">'+ value+'</option>');
+				    		}
+				    	});
+			    	$('#reportSelect').append(output.join(''));
+				}
+		    }
+		}
 	});
 }
 
