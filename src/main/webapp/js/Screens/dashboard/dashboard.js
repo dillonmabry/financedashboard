@@ -6,6 +6,7 @@ function getDashboard(user, database) {
 	$('#mainTable tbody > tr').remove();
 	//current user info
 	$("#userInfo").html(user.email);
+	var selectedCurrReport = getReport();
 	
 	//retrieve data
 	var reportRef = firebase.database().ref('reports/' + user.uid);
@@ -21,14 +22,23 @@ function getDashboard(user, database) {
 	    
 	    //get pay periods of selected report
 	    var currentReport = getReport();
+	    
 	    for (var key in reports) {
 		    if (reports.hasOwnProperty(key)) {
 		    	if(reports[key].report_name == currentReport) {
-		    		periods = reports[key].pay_periods;
+		    		 //populate report name & desc.
+		    	    $("#reportDashName").html('<strong>'+reports[key].report_name+'</strong>');
+		    	    
+		    		if(reports[key].pay_periods != null) {
+		    			periods = reports[key].pay_periods;
+		    		} else {
+		    			periods = null;
+		    		}
 		    	}
 			}
 	    }  
 	    
+	    if(periods != null) {
 	    //populate condition and main table with pay periods
 	    for (var key in periods) {
 	    	  if (periods.hasOwnProperty(key)) {
@@ -92,6 +102,10 @@ function getDashboard(user, database) {
 	        });
 
 	        $("#mainTable_filter input").addClass("form-control");
+	    } else {
+	    	//else periods null
+	    	$("#conditionLabel").html("Condition: <span class='label label-info'>No Condition Available</span>");
+	    }
 	  });
 }
 
@@ -108,6 +122,7 @@ $("#addNewPeriod").click(function(){
 	$('#addPeriodModal').on('hidden.bs.modal', function () {
 	    //$(this).find('form').trigger('reset');
 	});
+	$(".alert-warning").hide();
 	$('#addPeriodModal').modal({backdrop: 'static', keyboard: true})  
 	$("#addPeriodModal").modal("show");
 	
@@ -126,6 +141,19 @@ $("#addNewPeriod").click(function(){
 	var reportName = getReport();
 
 	$("#confirmAddPeriod").unbind('click').click(function(){
+		if(
+				 $("#pay-period").val() == "" ||
+				 $("#base-rent").val() == "" ||
+				 $("#base-expenses").val()== "" ||
+				 $("#base-income").val() == "" ||
+				 $("#net-income").val() == "" ||
+				 $("#other-expenses").val() == "" ||
+				 $("#utilities-expenses").val() == ""
+		) {
+			$(".inputCheckForm").html("<div class='alert alert-warning text-center' role='alert'><strong>Alert</strong> " +
+					"Please enter all required inputs</div>").show();
+			return;
+		}
 		var dtoSave = {
 				pay_period: $("#pay-period").val(),
 				base_rent: $("#base-rent").val(),
@@ -143,8 +171,47 @@ $("#addNewPeriod").click(function(){
 		toastInfo("Success","New pay period added to report");
 	});
 	
-	
 });
+
+//listen to add new report
+$("#addNewReport").click(function(){
+	//reset modal on close
+	$('#addReportModal').on('hidden.bs.modal', function () {
+	    //$(this).find('form').trigger('reset');
+	});
+	$('#addReportModal').modal({backdrop: 'static', keyboard: true})  
+	$("#addReportModal").modal("show");
+	//get current timestamp
+	var momentTime = moment().format().toString();
+
+	// get current user id
+	var userId = firebase.auth().currentUser.uid;
+	//get current report
+	var reportName = getReport();
+
+	$("#confirmAddReport").unbind('click').click(function(){
+		if(
+				 $("#reportDescInput").val() == "" ||
+				 $("#reportNameInput").val() == ""
+		) {
+			$(".inputCheckForm").html("<div class='alert alert-warning text-center' role='alert'><strong>Alert</strong> " +
+					"Please enter all required inputs</div>").show();
+			return;
+		}
+		var dtoSave = {
+				report_name: $("#reportNameInput").val(),
+				report_description: $("#reportDescInput").val(),
+				time_generated: momentTime,
+		}
+//		//insert new record
+		writeNewReport(userId, dtoSave)
+//		//reset form and hide modal
+		$(this).find('form').trigger('reset');
+		$("#addReportModal").modal("hide");
+		toastInfo("Success","New report added!");
+	});
+});
+
 
 //get user id, get report name matched with key, add new pay period to pay_periods
 function writeNewPeriod(userId, reportName, dto) {
@@ -181,6 +248,27 @@ function writeNewPeriod(userId, reportName, dto) {
 	getDashboard(currUser, database);
 }
 
+//get user id, add report to balance_reports
+function writeNewReport(userId,dto) {
+	// Get a reference to the database service
+	var database = firebase.database();
+	//get ref to balance_reports
+	var reportRef = firebase.database().ref('reports/' + userId +'/balance_reports');
+	var pushKey = reportRef.push().key;
+	
+	//push new report
+	reportRef.child(pushKey).set({
+		report_name: dto.report_name,
+    	report_description: dto.report_description,
+    	time_generated: dto.time_generated
+	});
+	//reload dashboard
+	var currUser = getUser();
+	getDashboard(currUser, database);
+	
+	//refresh reports
+	location.reload();
+}
 
 function toastInfo(subject, message) {
 

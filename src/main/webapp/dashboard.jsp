@@ -61,6 +61,9 @@
 						<label for="reportSelect">Select report:</label> <select
 							class="form-control" id="reportSelect"></select>
 					</div>
+					<button id='addNewReport' class="btn btn-default btn-sm pull-left">
+						<span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Add New Report
+					</button>
 				</div>
 				<div class="col-sm-8">
 					<div class="form-group text-right">
@@ -70,13 +73,14 @@
 				<!-- <button id='runReport' class="btn btn-primary center-block">Run Report</button> -->
 				<div class="row">
 					<div id="mainReport" class="col-sm-12 main">
+					<br/>
 						<div class="well">
 							<div class="row">
 								<div class="col-sm-4">
 									<h4 class="text-left" id='conditionLabel'></h4>
 								</div>
 								<div class="col-sm-4">
-									<h4 class="text-center">User Reports</h4>
+									<h4 class="text-center" id="reportDashName"></h4>
 								</div>
 								<div class="col-sm-4">
 									<button id='addNewPeriod' class="btn btn-primary btn-sm pull-right">
@@ -191,8 +195,41 @@
 	        </form>
 	      </div>
 	      <div class="modal-footer">
+	      	<div class="inputCheckForm"></div>
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	        <button type="button" id="confirmAddPeriod" class="btn btn-primary">Confirm</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- Add Report modal -->
+	<div class="modal fade" id="addReportModal" tabindex="-1" role="dialog" aria-labelledby="addReportModal" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" >Add New Report</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form id='addReportForm'>
+	        <!-- Report Name -->
+	          <div class="form-group">
+		          <label for="reportName" class="form-control-label">Report Name: </label>
+				  <input type='text' class="form-control" id='reportNameInput' required> 
+	          </div>
+			  <!-- Description-->
+	          <div class="form-group">
+		          <label for="reportDesc" class="form-control-label">Report Description: </label>
+				  <textarea class="form-control" rows="5" id="reportDescInput" required></textarea>
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	      	<div class="inputCheckForm"></div>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" id="confirmAddReport" class="btn btn-primary">Confirm</button>
 	      </div>
 	    </div>
 	  </div>

@@ -8,7 +8,7 @@
         	var password = $("#password").val();
         	if (!email || !password) {
         		$(".alert-danger").hide();
-        		$(".alert-warning").show();
+        		$(".alert-warning").html("Please enter email and password to login").show();
         		return;
             }
         	$(".alert-warning").hide();
@@ -41,6 +41,7 @@
         	var email = $("#email").val();
         	var password = $("#password").val();
             if (!email || !password) {
+              $(".alert-warning").show().html("Please enter email and password to register!")
               return;
             }
             // Register user    

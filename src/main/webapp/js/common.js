@@ -10,8 +10,9 @@ $(document).ready(function(){
 			var database = firebase.database();
 			// ensure user
 			var user = getUser();
-			// get unique report for user
+			//push reports for unique user
 			pushReports(userId);
+			//generate dashboard for user
 			getDashboard(user, database);
 			isBusy(false);
 			// listen to report selection
@@ -56,7 +57,6 @@ function pushReports(userId) {
 		}		
 		var reports = snapshot.val().balance_reports;
 	    //get pay periods and populate reports
-		//only push if reports are empty
 		if($("#reportSelect").val() == null) {
 		    for (var key in reports) {
 			    if (reports.hasOwnProperty(key)) {
@@ -72,6 +72,7 @@ function pushReports(userId) {
 		}
 	});
 }
+
 
 function toastInfo(subject, message) {
 
