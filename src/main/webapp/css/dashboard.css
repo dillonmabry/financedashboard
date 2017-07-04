@@ -21,7 +21,7 @@ textarea { resize: none;maxlength:500 }
   overflow: hidden;
   text-overflow: ellipsis;
   width: 250px;
-  background-color: #333333;
+  background-color: inherit;
 }
 
 .navbar-nav {
