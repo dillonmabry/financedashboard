@@ -58,14 +58,18 @@
 				</div>
 				<div class="col-sm-4">
 					<div class="form-group">
-						<label for="reportSelect">Select report:</label> <select
+						<label for="reportSelect">Selected report:</label> <select
 							class="form-control" id="reportSelect"></select>
 					</div>
 					<button id='addNewReport' class="btn btn-default btn-sm pull-left">
 						<span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Add New Report
+					</button>&nbsp;
+					<button id='deleteReport' class="btn btn-default btn-sm text-center">
+						<span class="glyphicon glyphicon-remove"></span>&nbsp;Delete Report
 					</button>
 				</div>
 				<div class="col-sm-8">
+				<br/>
 					<div class="form-group text-right">
 						<label id="reportRange"></label>
 					</div>
@@ -234,6 +238,7 @@
 	    </div>
 	  </div>
 	</div>
+	
 
 	<!-- Scripts and dependencies -->
 	<script src="js/scripts/jquery-3.1.0.min.js"></script>

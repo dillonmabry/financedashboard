@@ -203,11 +203,52 @@ $("#addNewReport").click(function(){
 				report_description: $("#reportDescInput").val(),
 				time_generated: momentTime,
 		}
-//		//insert new record
+		//insert new record
 		writeNewReport(userId, dtoSave)
-//		//reset form and hide modal
+		//reset form and hide modal
 		$(this).find('form').trigger('reset');
 		$("#addReportModal").modal("hide");
+		toastInfo("Success","New report added!");
+	});
+});
+
+//listen to delete report
+$("#deleteReport").click(function(){
+	$("<div class=\"modal fade\" id=\"deleteReportModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"deleteReportModal\" aria-hidden=\"true\">\r\n" + 
+			"	  <div class=\"modal-dialog\" role=\"document\">\r\n" + 
+			"	    <div class=\"modal-content\">\r\n" + 
+			"	      <div class=\"modal-header\">\r\n" + 
+			"	        <h5 class=\"modal-title\">Confirm Changes</h5>\r\n" + 
+			"	        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n" + 
+			"	          <span aria-hidden=\"true\">&times;</span>\r\n" + 
+			"	        </button>\r\n" + 
+			"	      </div>\r\n" + 
+			"	      <div class=\"modal-body\">\r\n" + 
+			"	        <p>Are you sure you wish to delete?</p>\r\n" + 
+			"	      </div>\r\n" + 
+			"	      <div class=\"modal-footer\">\r\n" + 
+			"	        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n" + 
+			"	        <button type=\"button\" id=\"confirmDeleteReport\" class=\"btn btn-primary\">Delete</button>\r\n" + 
+			"	      </div>\r\n" + 
+			"	    </div>\r\n" + 
+			"	  </div>\r\n" + 
+			"	</div>").appendTo(document.body);
+	$("#deleteReportModal").on('hidden.bs.modal', function () {
+		$("#deleteReportModal").remove();
+	});
+	$('#deleteReportModal').modal({backdrop: 'static', keyboard: true})  
+	$("#deleteReportModal").modal("show");
+	// get current user id
+	var userId = firebase.auth().currentUser.uid;
+	//get current report
+	var reportName = getReport();
+	$("#confirmDeleteReport").unbind('click').click(function(){
+		
+		deleteReport(userId, reportName);
+
+		$("#deleteReportModal").modal("hide");
+		$("#deleteReportModal").remove();
+		$('.modal-backdrop').remove();
 		toastInfo("Success","New report added!");
 	});
 });
@@ -267,6 +308,36 @@ function writeNewReport(userId,dto) {
 	getDashboard(currUser, database);
 	
 	//refresh reports
+	location.reload();
+}
+
+function deleteReport(userId, report) {
+	// Get a reference to the database service
+	var database = firebase.database();
+	//get db reference
+	var reportRef = firebase.database().ref('reports/' + userId);
+	reportRef.on('value', function(snapshot) {
+		var reports = snapshot.val().balance_reports;
+		//get report to delete
+	    for (var key in reports) {
+		    if (reports.hasOwnProperty(key)) {
+			    	$.each(reports[key], function(reportNameKey, value) {
+			    		if(reportNameKey == "report_name") {
+			    			if(report == value) {
+			    				//get ref to balance_reports
+			    				var deleteRef = firebase.database().ref('reports/' + userId +'/balance_reports');
+			    				//delete report
+			    				deleteRef.child(key).remove();
+			    			}
+			    		}
+			    	});
+			}
+	    }
+	});
+	
+	//reload dashboard
+	var currUser = getUser();
+	getDashboard(currUser, database);
 	location.reload();
 }
 
