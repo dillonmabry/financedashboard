@@ -61,9 +61,9 @@
 						<label for="reportSelect">Selected report:</label> <select
 							class="form-control" id="reportSelect"></select>
 					</div>
-					<button id='addNewReport' class="btn btn-default btn-sm pull-left">
+					<button id='addNewReport' class="btn btn-primary btn-sm pull-left">
 						<span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Add New Report
-					</button>&nbsp;
+					</button>
 					<button id='deleteReport' class="btn btn-default btn-sm text-center">
 						<span class="glyphicon glyphicon-remove"></span>&nbsp;Delete Report
 					</button>
@@ -87,13 +87,17 @@
 									<h4 class="text-center" id="reportDashName"></h4>
 								</div>
 								<div class="col-sm-4">
+									<button id='deletePeriod' style="display:none" class="btn btn-default btn-sm pull-right">
+										<span class="glyphicon glyphicon-remove"></span>&nbsp;Delete Period
+									</button>
+									&nbsp;
 									<button id='addNewPeriod' class="btn btn-primary btn-sm pull-right">
 										<span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Add New Period
 									</button>
 								</div>
 							</div>
 							<hr />
-							<table id="mainTable" class="display" cellspacing="0"
+							<table id="mainTable" class="display mainTableClass" cellspacing="0"
 								width="100%">
 								<thead>
 									<tr>

@@ -24,6 +24,11 @@ textarea { resize: none;maxlength:500 }
   background-color: inherit;
 }
 
+.btn-danger {
+	background-color:#D73318;
+	border-color: #BB2D16;
+}
+
 .navbar-nav {
 	padding-bottom:10px;
 }

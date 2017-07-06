@@ -3,7 +3,8 @@ function getDashboard(user, database) {
 	if ( $.fn.DataTable.isDataTable('#mainTable') ) {
 		  $('#mainTable').DataTable().destroy();
 		}
-	$('#mainTable tbody > tr').remove();
+	$('#mainTable tbody').empty();
+	
 	//current user info
 	$("#userInfo").html(user.email);
 	var selectedCurrReport = getReport();
@@ -88,7 +89,7 @@ function getDashboard(user, database) {
 	    			+sortedDates[sortedDates.length-1].key);  
 	    	
 		    //get the current reports
-		    $('#mainTable').DataTable({
+		    var table = $('#mainTable').DataTable({
 	        	"oLanguage": {
 			        "sSearch": "Filter: ",
 			       },
@@ -100,8 +101,34 @@ function getDashboard(user, database) {
 			         'copy', 'csv', 'excel', 'pdf', 'print'
 			       ],
 	        });
+		    //listen to table row selection	
+			$('#mainTable.display > tbody > tr').click(function() {
+				if ( $(this).hasClass('selected') ) {
+			        $(this).removeClass('selected');
+			        $("#deletePeriod").hide();
+			    }
+			    else {
+			        table.$('tr.selected').removeClass('selected');
+			        $(this).addClass('selected');
+			        $("#deletePeriod").show();
+			    }
+			});
+			
+			$('#deletePeriod').unbind('click').click( function () {
+				// get current user id
+				var userId = firebase.auth().currentUser.uid;
+				//get current report
+				var reportName = getReport();
+				//get selected period and remove
+				var periodDelete = table.$('tr.selected').find('td:first').text();
+				//delete period
+				deletePeriod(userId, reportName, periodDelete);
+				toastInfo("Success","Pay period removed");
+				
+			} );
 
 	        $("#mainTable_filter input").addClass("form-control");
+
 	    } else {
 	    	//else periods null
 	    	$("#conditionLabel").html("Condition: <span class='label label-info'>No Condition Available</span>");
@@ -131,6 +158,7 @@ $("#addNewPeriod").click(function(){
 		var dateNow = moment();
 		dateNow.format("MM-DD-YYYY");
         $('#periodSpan').datetimepicker({
+        	minDate: dateNow,
         	format: 'MM-DD-YYYY',
         	defaultDate: dateNow
         });
@@ -208,7 +236,7 @@ $("#addNewReport").click(function(){
 		//reset form and hide modal
 		$(this).find('form').trigger('reset');
 		$("#addReportModal").modal("hide");
-		toastInfo("Success","New report added!");
+		toastInfo("Success","New report added");
 	});
 });
 
@@ -249,7 +277,7 @@ $("#deleteReport").click(function(){
 		$("#deleteReportModal").modal("hide");
 		$("#deleteReportModal").remove();
 		$('.modal-backdrop').remove();
-		toastInfo("Success","New report added!");
+		toastInfo("Success","New report added");
 	});
 });
 
@@ -278,6 +306,34 @@ function writeNewPeriod(userId, reportName, dto) {
 			    					other_expenses: dto.other_expenses,
 			    					utilities: dto.utilities
 			    				});
+			    			}
+			    		}
+			    	});
+			}
+	    }
+	});
+	//reload dashboard
+	var currUser = getUser();
+	getDashboard(currUser, database);
+}
+
+//get user id, add report to balance_reports
+function deletePeriod(userId, reportName, pay_period) {
+	// Get a reference to the database service
+	var database = firebase.database();
+	
+	var reportRef = firebase.database().ref('reports/' + userId);
+	reportRef.on('value', function(snapshot) {
+		var reports = snapshot.val().balance_reports;
+	    //get pay periods and populate reports
+	    for (var key in reports) {
+		    if (reports.hasOwnProperty(key)) {
+			    	$.each(reports[key], function(reportNameKey, value) {
+			    		if(reportNameKey == "report_name") {
+			    			if(reportName == value) {
+			    				var reportSetRef = firebase.database().ref('reports/' + userId + '/balance_reports/'+key+'/pay_periods');
+			    				//add the period as new child
+			    				reportSetRef.child(pay_period).remove();
 			    			}
 			    		}
 			    	});
