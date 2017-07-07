@@ -17,6 +17,7 @@ $(document).ready(function(){
 			isBusy(false);
 			// listen to report selection
 			$("#reportSelect").on("change", function() {
+				$("#deletePeriod").hide();
 				isBusy(true);
 				var user = firebase.auth().currentUser;
 				var database = firebase.database();

@@ -77,7 +77,7 @@
 							</div>
 							<div class="input-group">
 							   <span class="input-group-btn">
-							        <button id="sendVerify" class="btn btn-default btn-sm">Re-send Verification Email</button>
+							        <button id="sendVerify" class="btn btn-default">Re-send Verification Email</button>
 							   </span>
 							   <h4 id="userVerified" class="text-right"></h4>
 							</div>

@@ -6,7 +6,7 @@ h3{
 	font-size:20px;
 }
 
-.input-group-addon, .form-control, .btn, .modal-dialog, .modal-content, .well, .alert, .label {
+.input-group-addon, .form-control {
 	border-radius:0;
 }
 
