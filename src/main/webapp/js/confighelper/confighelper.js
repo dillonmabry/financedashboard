@@ -19,7 +19,7 @@ function getVersion() {
 		},
 		dataType : 'text',
 		success : function(data) {
-			
+			return data;
 		},
 		error : function(e) {
 			console.log("Error: " + JSON.stringify(e));

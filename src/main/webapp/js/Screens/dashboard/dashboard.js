@@ -121,10 +121,11 @@ function getDashboard(user, database) {
 				var reportName = getReport();
 				//get selected period and remove
 				var periodDelete = table.$('tr.selected').find('td:first').text();
+				console.log(periodDelete);
 				//delete period
 				deletePeriod(userId, reportName, periodDelete);
 				toastInfo("Success","Pay period removed");
-				
+				return;
 			} );
 
 	        $("#mainTable_filter input").addClass("form-control");
@@ -333,16 +334,22 @@ function deletePeriod(userId, reportName, pay_period) {
 			    			if(reportName == value) {
 			    				var reportSetRef = firebase.database().ref('reports/' + userId + '/balance_reports/'+key+'/pay_periods');
 			    				//add the period as new child
-			    				reportSetRef.child(pay_period).remove();
+			    				reportSetRef.child(pay_period).set(null);
+			    				//console.log(reportSetRef.child(pay_period));
 			    			}
 			    		}
 			    	});
 			}
 	    }
 	});
+	
 	//reload dashboard
 	var currUser = getUser();
 	getDashboard(currUser, database);
+	//remove delete if no more elements left
+	if($("#mainTable > tbody > tr").length< 1) {
+		$("#deletePeriod").hide();;
+	}
 }
 
 //get user id, add report to balance_reports
@@ -361,7 +368,6 @@ function writeNewReport(userId,dto) {
 	});
 	//reload dashboard
 	var currUser = getUser();
-	getDashboard(currUser, database);
 	
 	//refresh reports
 	location.reload();
@@ -393,7 +399,7 @@ function deleteReport(userId, report) {
 	
 	//reload dashboard
 	var currUser = getUser();
-	getDashboard(currUser, database);
+	//refresh reports 
 	location.reload();
 }
 

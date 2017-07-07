@@ -4,8 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Personal Finance Dashboard</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/main-theme.min.css" rel="stylesheet">
-<link href="css/dashboard.css" rel="stylesheet">
+<!-- <link href="css/main-theme.min.css" rel="stylesheet"> -->
+<link href="css/dashboard.css" rel="stylesheet"> 
 <link href="css/toastr.min.css" rel="stylesheet">
 </head>
 <body>

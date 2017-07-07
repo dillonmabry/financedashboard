@@ -44,6 +44,7 @@
               $(".alert-warning").show().html("Please enter email and password to register!")
               return;
             }
+            $(".alert-warning").hide();
             // Register user    
             firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user){
             	isBusy(true);
@@ -53,20 +54,7 @@
             })
               .catch(function(error) {
                 if (error.code === 'auth/email-already-in-use') {
-                  var credential = firebase.auth.EmailAuthProvider.credential(email, password);
-                  app.signInWithGoogle()
-                    .then(function() {
-                      firebase.auth().currentUser.link(credential)
-                        .then(function(user) {
-                          $(".alert-danger").hide();
-                          isBusy(false);
-                          alert("Account linking success", user);
-                        }, function(error) {
-                        	alert("Account linking error", error);
-                        	isBusy(false);
-                        	return false;
-                        });
-                    });
+                	 $(".alert-danger").show().html("Error, email already in use!");
                 } else {
                 	$(".alert-danger").html(""+error).show();
                 	isBusy(false);

@@ -43,7 +43,7 @@ function getUser() {
 
 //load reports
 function pushReports(userId) {
-	
+	isBusy(true);
 	//monitor/load report changes
   	var reportRef = firebase.database().ref('reports/' + userId);
 	reportRef.on('value', function(snapshot) {
@@ -53,6 +53,9 @@ function pushReports(userId) {
 				"role='alert'>You have no reports at this time</div>");
 			$("#reportSelect").html("<option>No Reports Available</option>");
 			$("#reportSelect").prop("disabled",true);
+			$("#addNewPeriod").prop("disabled",true);
+			$("#deleteReport").prop("disabled",true);
+			isBusy(false);
 			return false;
 		}		
 		var reports = snapshot.val().balance_reports;

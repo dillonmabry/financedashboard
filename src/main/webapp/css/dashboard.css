@@ -5,6 +5,11 @@ body {
 h3{
 	font-size:20px;
 }
+
+.input-group-addon, .form-control, .btn, .modal-dialog, .modal-content, .well, .alert, .label {
+	border-radius:0;
+}
+
 .starter-template {
   padding: 40px 15px;
   text-align: center;
@@ -38,7 +43,7 @@ textarea { resize: none;maxlength:500 }
     width: 100%;
     text-align: center;
     margin: auto;
-    padding-top: 23px;
+    padding-top: 25px;
     font-size:16px;
 }
 
