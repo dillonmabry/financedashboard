@@ -57,7 +57,7 @@
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label for="userName">User Name: </label>
-										<input class="form-control" id="userName" type="userName" readonly>
+										<input class="form-control" id="userName" type="userName">
 									</div>
 									<div class="form-group ">
 										<label for="emailPref">Email: </label>
@@ -67,7 +67,7 @@
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label for="photoUrl">Photo URL: </label>
-										<input class="form-control" id="photoUrl" type="photoUrl" readonly>
+										<input class="form-control" id="photoUrl" type="photoUrl">
 									</div>
 									<div class="form-group ">
 										<label for="userId">User ID: </label>
@@ -78,6 +78,9 @@
 							<div class="input-group">
 							   <span class="input-group-btn">
 							        <button id="sendVerify" class="btn btn-default">Re-send Verification Email</button>
+							   </span>&nbsp;
+							   <span class="input-group-btn">
+							        <button id="saveUserInfo" class="btn btn-default">Save User Info</button>
 							   </span>
 							   <h4 id="userVerified" class="text-right"></h4>
 							</div>

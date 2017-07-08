@@ -6,7 +6,7 @@ function getDashboard(user, database) {
 	$('#mainTable tbody').empty();
 	
 	//current user info
-	$("#userInfo").html(user.email);
+	$("#userInfo").html(user.displayName);
 	var selectedCurrReport = getReport();
 	
 	//retrieve data
@@ -153,7 +153,9 @@ $("#addNewPeriod").click(function(){
 	$(".alert-warning").hide();
 	$('#addPeriodModal').modal({backdrop: 'static', keyboard: true})  
 	$("#addPeriodModal").modal("show");
-	
+	$("#addPeriodModal").on('shown.bs.modal', function(){
+		$('#pay-period').focus();
+	});
 	//datetimepicker
 	$(function () {
 		var dateNow = moment();
@@ -210,6 +212,9 @@ $("#addNewReport").click(function(){
 	});
 	$('#addReportModal').modal({backdrop: 'static', keyboard: true})  
 	$("#addReportModal").modal("show");
+	$("#addReportModal").on('shown.bs.modal', function(){
+		$('#reportNameInput').focus();
+	});
 	//get current timestamp
 	var momentTime = moment().format().toString();
 

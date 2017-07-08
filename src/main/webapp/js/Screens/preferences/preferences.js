@@ -10,35 +10,31 @@ $(document).ready(function(){
 			  var database = firebase.database();
 			  //ensure user
 			  var user = getUser(userId, database);
-			  $("#userInfo").html(user.email);
-			  //TODO: add username
-			  if(user.displayName == null) {
-				  $("#userName").val("Not Created");
-			  } else {
-				  $("#userName").val(user.displayName);
-			  }
-			  if(user.photoURL == null) {
-				  $("#photoUrl").val("Not Created");
-			  }  else {
-				  $("#photoUrl").val(user.photoURL);
-			  }
-			  $("#emailPref").val(user.email);
-			  $("#userId").val(user.uid);
-			  if(user.emailVerified) {
-				  $("#userVerified").html("User Verified: &nbsp;<span class='label label-success'>"
-					  +"Verified</span>");
-			  } else {
-				  $("#userVerified").html("User Verified: &nbsp;<span class='label label-warning'>"
-						  +"Unverified</span>");
-			  }
+			  //populate user info
+			  populateUserInfo(user);
+			  //listen to resend verify email
 			  $("#sendVerify").click(function(){
 				  user.sendEmailVerification().catch(function(error) { alert(error);});
-	              toastInfo("Sucess","Email verification re-sent to: "+user.email)
+	              toastInfo("Success","Email verification re-sent to: "+user.email)
 	              $(this).prop('disabled', true);
 			  });
-			  
-			  
-			  
+			  //listen to save user info
+			  $("#saveUserInfo").click(function(){
+				  var userInfo = {
+						  name: $("#userName").val(),
+						  photo: $("#photoUrl").val(),
+						  email: $("#emailPref").val()
+				  }
+				  //update profile
+				  user.updateProfile({
+					  displayName: userInfo.name,
+					  photoURL: userInfo.photo
+					}).then(function() {
+						toastInfo("Success","User profile successfully updated") 
+					}, function(error) {
+						toastInfo("Error",""+error);
+					});
+			  });
 			  isBusy(false);
 		  } 
 	});
@@ -55,6 +51,30 @@ function getUser(userId, database) {
 		  emailVerified = user.emailVerified;
 		  uid = user.uid;
 		  return user;
+	  }
+}
+
+function populateUserInfo(user) {
+	$("#userInfo").html(user.displayName);
+	  //TODO: add username
+	  if(user.displayName == null) {
+		  $("#userName").val("Not Created");
+	  } else {
+		  $("#userName").val(user.displayName);
+	  }
+	  if(user.photoURL == null) {
+		  $("#photoUrl").val("Not Created");
+	  }  else {
+		  $("#photoUrl").val(user.photoURL);
+	  }
+	  $("#emailPref").val(user.email);
+	  $("#userId").val(user.uid);
+	  if(user.emailVerified) {
+		  $("#userVerified").html("User Verified: &nbsp;<span class='label label-success'>"
+			  +"Verified</span>");
+	  } else {
+		  $("#userVerified").html("User Verified: &nbsp;<span class='label label-warning'>"
+				  +"Unverified</span>");
 	  }
 }
 
