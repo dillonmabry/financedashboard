@@ -85,8 +85,8 @@ function getDashboard(user, database) {
 				$("#conditionLabel").html("Condition: <span class='label label-danger'>Critical</span>");
 			}
 	    	//set report range info period
-	    	$("#reportRange").html("Start Period: "+sortedDates[0].key+"<br/><br/>End Period: "
-	    			+sortedDates[sortedDates.length-1].key);  
+	    	$("#reportRange").html("Start Period: "+datePeriods[0].key+"<br/><br/>End Period: "
+	    			+datePeriods[datePeriods.length-1].key);  
 	    	
 		    //get the current reports
 		    var table = $('#mainTable').DataTable({
@@ -325,6 +325,7 @@ function writeNewPeriod(userId, reportName, dto) {
 
 //get user id, add report to balance_reports
 function deletePeriod(userId, reportName, pay_period) {
+	location.reload();
 	// Get a reference to the database service
 	var database = firebase.database();
 	
