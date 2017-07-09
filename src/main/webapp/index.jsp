@@ -19,7 +19,8 @@
 						class="icon-bar"></span>
 				</button>
 			</div>
-			<a class="navbar-brand text-center center-block" href="#">Personal Finance Dashboard</a>
+			<a class="navbar-brand text-center center-block" href="#">Personal
+				Finance Planner</a>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li class="active">

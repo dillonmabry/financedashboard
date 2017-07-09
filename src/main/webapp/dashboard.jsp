@@ -25,7 +25,7 @@
 				</button>
 			</div>
 			<a class="navbar-brand text-center center-block" href="#">Personal
-				Finance Dashboard</a>
+				Finance Planner</a>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<!-- 	<li><a href="home.jsp"><span class="glyphicon glyphicon-home"></span></a></li> -->
