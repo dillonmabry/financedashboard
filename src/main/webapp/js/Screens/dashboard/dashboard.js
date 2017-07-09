@@ -101,8 +101,10 @@ function getDashboard(user, database) {
 			         'copy', 'csv', 'excel', 'pdf', 'print'
 			       ],
 	        });
+
 		    //listen to table row selection	
-			$('#mainTable.display > tbody > tr').click(function() {
+		    $('#mainTable tbody').on( 'click', 'tr', function () {
+		    	console.log("clicked");
 				if ( $(this).hasClass('selected') ) {
 			        $(this).removeClass('selected');
 			        $("#deletePeriod").hide();
@@ -113,6 +115,12 @@ function getDashboard(user, database) {
 			        $("#deletePeriod").show();
 			    }
 			});
+		    
+		    //remove previous selected on new page
+		    $('#mainTable').on( 'page.dt', function () {
+		    	$('#mainTable > tbody > tr').removeClass("selected");
+		    	$("#deletePeriod").hide();
+		    } );
 			
 			$('#deletePeriod').unbind('click').click( function () {
 				// get current user id
@@ -325,7 +333,6 @@ function writeNewPeriod(userId, reportName, dto) {
 
 //get user id, add report to balance_reports
 function deletePeriod(userId, reportName, pay_period) {
-	location.reload();
 	// Get a reference to the database service
 	var database = firebase.database();
 	
@@ -339,9 +346,8 @@ function deletePeriod(userId, reportName, pay_period) {
 			    		if(reportNameKey == "report_name") {
 			    			if(reportName == value) {
 			    				var reportSetRef = firebase.database().ref('reports/' + userId + '/balance_reports/'+key+'/pay_periods');
-			    				//add the period as new child
+			    				//delete the period
 			    				reportSetRef.child(pay_period).set(null);
-			    				//console.log(reportSetRef.child(pay_period));
 			    			}
 			    		}
 			    	});
