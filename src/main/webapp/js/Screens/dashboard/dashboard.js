@@ -2,12 +2,13 @@ function getDashboard(user, database) {
 	//clear main table
 	if ( $.fn.DataTable.isDataTable('#mainTable') ) {
 		  $('#mainTable').DataTable().destroy();
+		  $('#mainTable').DataTable().clear();
 		}
-	$('#mainTable tbody').empty();
 	
 	//current user info
 	$("#userInfo").html(user.displayName);
 	var selectedCurrReport = getReport();
+	$("#deletePeriod").hide();
 	
 	//retrieve data
 	var reportRef = firebase.database().ref('reports/' + user.uid);
@@ -39,6 +40,21 @@ function getDashboard(user, database) {
 			}
 	    }  
 	    
+	    //get the current reports
+	    var table = $('#mainTable').DataTable({
+        	"oLanguage": {
+		        "sSearch": "Filter: ",
+		       },
+		       "bDestroy": true,
+		       dom:'Bfrtip',
+		       "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+		       dom: 'Blfrtip',
+		       buttons: [
+		         'copy', 'csv', 'excel', 'pdf', 'print'
+		       ],
+        });
+	    $("#mainTable_filter input").addClass("form-control");
+	    
 	    if(periods != null) {
 	    //populate condition and main table with pay periods
 	    for (var key in periods) {
@@ -54,17 +70,15 @@ function getDashboard(user, database) {
 	    		var expenses = (parseInt(periods[key].expenses) + parseInt(periods[key].utilities) 
 	    				+ parseInt(periods[key].other_expenses) + parseInt(periods[key].base_rent));
 	    	    var postExpenses = (parseInt(periods[key].net_income)) - expenses;
-	    	    
-	    	     //setup data table
-		       	 $('#mainDataTable').append(
-		  			 "<tr class='child'>"
-		  			 +'<td>'+key+'</td>'
-		  			 +'<td>$'+gross_income.toFixed(2)+'</td>'
-		  			 +'<td>$'+net_income.toFixed(2)+'</td>'
-		  			 +'<td>$'+expenses.toFixed(2)+'</td>'
-		  			 +'<td>$'+postExpenses.toFixed(2)+'</td>'
-		  			 +'</tr>$');
-		    	  }
+	    	    //add each row
+	    	    table.row.add([
+	    	    	key,
+	    	    	gross_income.toFixed(2),
+	    	    	net_income.toFixed(2),
+	    	    	expenses.toFixed(2),
+	    	    	postExpenses.toFixed(2)
+	    	    ] ).draw();
+	    	  }
 	    	}
 		    var sortedDates = datePeriods;
 		    sortedDates.sort(function(a, b) {
@@ -88,23 +102,8 @@ function getDashboard(user, database) {
 	    	$("#reportRange").html("Start Period: "+datePeriods[0].key+"<br/><br/>End Period: "
 	    			+datePeriods[datePeriods.length-1].key);  
 	    	
-		    //get the current reports
-		    var table = $('#mainTable').DataTable({
-	        	"oLanguage": {
-			        "sSearch": "Filter: ",
-			       },
-			       "bDestroy": true,
-			       dom:'Bfrtip',
-			       "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-			       dom: 'Blfrtip',
-			       buttons: [
-			         'copy', 'csv', 'excel', 'pdf', 'print'
-			       ],
-	        });
-
 		    //listen to table row selection	
 		    $('#mainTable tbody').on( 'click', 'tr', function () {
-		    	console.log("clicked");
 				if ( $(this).hasClass('selected') ) {
 			        $(this).removeClass('selected');
 			        $("#deletePeriod").hide();
@@ -129,14 +128,11 @@ function getDashboard(user, database) {
 				var reportName = getReport();
 				//get selected period and remove
 				var periodDelete = table.$('tr.selected').find('td:first').text();
-				console.log(periodDelete);
 				//delete period
 				deletePeriod(userId, reportName, periodDelete);
 				toastInfo("Success","Pay period removed");
 				return;
 			} );
-
-	        $("#mainTable_filter input").addClass("form-control");
 
 	    } else {
 	    	//else periods null
