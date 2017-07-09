@@ -30,7 +30,7 @@ function getDashboard(user, database) {
 		    	if(reports[key].report_name == currentReport) {
 		    		 //populate report name & desc.
 		    	    $("#reportDashName").html('<strong>'+reports[key].report_name+'</strong>');
-		    	    
+		    	    $("#reportDashName").attr("title",reports[key].report_description);
 		    		if(reports[key].pay_periods != null) {
 		    			periods = reports[key].pay_periods;
 		    		} else {

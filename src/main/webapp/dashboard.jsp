@@ -83,7 +83,9 @@
 									<h4 class="text-left" id='conditionLabel'></h4>
 								</div>
 								<div class="col-sm-4">
-									<h4 class="text-center" id="reportDashName"></h4>
+									<h4 class="text-center" id="reportDashName"
+									data-toggle="tooltip"
+									></h4>
 								</div>
 								<div class="col-sm-4">
 									<button id='deletePeriod' style="display:none" class="btn btn-default pull-right">
