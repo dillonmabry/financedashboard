@@ -103,7 +103,8 @@ function getDashboard(user, database) {
 	    			+datePeriods[datePeriods.length-1].key);  
 	    	
 		    //listen to table row selection	
-		    $('#mainTable tbody').on( 'click', 'tr', function () {
+		    $('#mainTable tbody').unbind('click').on( 'click', 'tr', function () {
+		    	console.log("clicked");
 				if ( $(this).hasClass('selected') ) {
 			        $(this).removeClass('selected');
 			        $("#deletePeriod").hide();
@@ -117,6 +118,7 @@ function getDashboard(user, database) {
 		    
 		    //remove previous selected on new page
 		    $('#mainTable').on( 'page.dt', function () {
+		    	console.log("clicked pg");
 		    	$('#mainTable > tbody > tr').removeClass("selected");
 		    	$("#deletePeriod").hide();
 		    } );
