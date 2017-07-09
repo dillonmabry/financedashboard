@@ -53,8 +53,8 @@
 				role="alert">Email and password required!</div>
 				<div class="alert alert-danger" style="display:none;padding:10px;"
 				role="alert"></div>
-				<button class="btn btn-default btn-sm" type="submit">Sign-In</button>&nbsp;
-				<button class="btn btn-default btn-sm" id="signInGoogle">
+				<button class="btn btn-default" type="submit">Sign-In</button>&nbsp;
+				<button class="btn btn-default" id="signInGoogle">
 					<img src="img/google-icon.svg" height="15px" width="15px"/>
 					&nbsp;Google Sign-In
 				</button>
@@ -62,7 +62,7 @@
 			<hr/>
 				<div class="row">
 					<label for="register">Need to register?&nbsp;</label>
-					<button class="btn btn-default btn-sm" id="register">Register Now</button>
+					<button class="btn btn-default" id="register">Register Now</button>
 					<br/>
 				</div>
 			</div>
