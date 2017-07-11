@@ -14,7 +14,7 @@ $(document).ready(function(){
 			  populateUserInfo(user);
 			  //listen to resend verify email
 			  $("#sendVerify").click(function(){
-				  user.sendEmailVerification().catch(function(error) { alert(error);});
+				  user.sendEmailVerification().catch(function(error) { toastInfo("Error",""+error);});
 	              toastInfo("Success","Email verification re-sent to: "+user.email)
 	              $(this).prop('disabled', true);
 			  });

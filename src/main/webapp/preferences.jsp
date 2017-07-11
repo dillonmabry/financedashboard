@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Personal Finance Dashboard</title>
+<title>Personal Finance Dashboard - Settings</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <!-- <link href="css/main-theme.min.css" rel="stylesheet"> -->
 <link href="css/dashboard.css" rel="stylesheet">
@@ -28,6 +28,7 @@
 						<span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp; Dashboard
 						</a>
 					</li>
+					<li><a href="filemgmt.jsp">Manage Files</a></li>
 					<li class="active" id="settingsMenu"><a href="preferences.jsp">Settings</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

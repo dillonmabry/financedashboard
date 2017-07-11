@@ -16,6 +16,21 @@ h3{
   text-align: center;
 }
 
+#fileTable td {
+    max-width:100px;
+    word-wrap:break-word;
+}
+
+.progress, .progressStatus {
+	height: 25px !important;
+	margin-top:5px;
+}
+
+.file {
+  visibility: hidden;
+  position: absolute;
+}
+
 .userPhoto {
 	height: 50px;
 	width: 50px;

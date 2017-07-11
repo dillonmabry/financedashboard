@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Personal Finance Dashboard</title>
+<title>Personal Finance Dashboard - Home</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/dashboard.css" rel="stylesheet"> 
 <link href="css/toastr.min.css" rel="stylesheet">
@@ -32,6 +32,7 @@
 					<li class="active" id="dashboardMenu"><a href="#"> <span
 							class="glyphicon glyphicon-home"></span>&nbsp;&nbsp; Dashboard
 					</a></li>
+					<li><a href="filemgmt.jsp">Manage Files</a></li>
 					<li id="settingsMenu"><a href="preferences.jsp">Settings</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -267,7 +268,7 @@
 		src="//cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
 	<script
 		src="//cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
-		<script
+	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.43/js/bootstrap-datetimepicker.min.js"></script>
