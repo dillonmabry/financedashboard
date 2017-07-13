@@ -111,8 +111,13 @@ function updateTable(user) {
 	var fileRef = firebase.database().ref('user_files/' + user.uid);
 	fileRef.on('value', function(snapshot) {
 		if(snapshot.val() == null) {
+			$("#fileListInfo").html("<div class='alert alert-primary text-center' " +
+					"style='background-color:#d9edf7;color:#31708f;padding:10px;"+
+				"role='alert'>You have no files at this time</div>");
+			isBusy(false);
 			return false;
 		}	
+		$("#fileListInfo").html("");
 		//get the current reports
 	    var table = $('#fileTable').DataTable({
 	    	"oLanguage": {
