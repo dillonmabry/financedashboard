@@ -23,7 +23,7 @@
 						class="icon-bar"></span>
 				</button>
 				<!-- <a class="navbar-brand" href="#">Personal
-				Finance Planner</a> -->
+				Finance Planner</a>  -->
 			</div>
 			
 			<div class="collapse navbar-collapse">
@@ -35,10 +35,14 @@
 					<li id="settingsMenu"><a href="preferences.jsp">Settings</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li class="text-right"><a id="userInfo" class="text-muted"></a>
+					<li class="text-right">
+						<div class="inset">
+							<a id="userInfo" class="text-muted"></a>
+							<img id="userInfoAvatar" />
+						</div>
 					</li>
-					<li id="signOut"><a href="#"><span
-							class="glyphicon glyphicon glyphicon-log-out">&nbsp; </span>Logout</a>
+					<li id="signOut"><a href="#"><span class="glyphicon glyphicon glyphicon-log-out">&nbsp;
+						</span>Logout</a>
 					</li>
 				</ul>
 			</div>

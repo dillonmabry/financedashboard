@@ -33,7 +33,10 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="text-right">
-						<a id="userInfo" class="text-muted"></a>
+						<div class="inset">
+							<a id="userInfo" class="text-muted"></a>
+							<img id="userInfoAvatar" />
+						</div>
 					</li>
 					<li id="signOut"><a href="#"><span class="glyphicon glyphicon glyphicon-log-out">&nbsp;
 						</span>Logout</a>
@@ -67,7 +70,7 @@
 								</div>
 								<div class="col-sm-6">
 									<div class="form-group">
-										<label for="photoUrl">Photo URL: </label>
+										<label for="photoUrl">Profile Avatar URL: </label>
 										<input class="form-control" id="photoUrl" type="photoUrl">
 									</div>
 									<div class="form-group ">

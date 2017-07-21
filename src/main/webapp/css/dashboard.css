@@ -7,13 +7,34 @@ h3{
 	font-size:20px;
 }
 
-.input-group-addon, .form-control {
-	border-radius:0;
+.input-group-addon, .form-control{
+	border-radius:0px;
+}
+
+.btn {
+	border-radius:3px;
 }
 
 .starter-template {
   padding: 40px 15px;
   text-align: center;
+}
+
+.brand-logo {
+	height:50px;
+	width:50px;
+	margin-top: -12px;
+}
+
+#signInSubmit, #signInGoogle, #register {
+	width:100%;
+	margin-top:2%;
+/* 	text-align: center;
+    display: inline-block; */
+}
+
+.modal-title {
+	font-weight:600;
 }
 
 #fileTable td {
@@ -49,6 +70,13 @@ textarea { resize: none;maxlength:500 }
   text-overflow: ellipsis;
   width: 250px;
   background-color: inherit;
+  margin-right:10px;
+}
+
+#userInfoAvatar {
+	height:50px;
+	width:50px;
+	border-radius: 50%;
 }
 
 .btn-danger {

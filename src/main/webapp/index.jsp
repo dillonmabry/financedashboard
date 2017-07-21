@@ -19,7 +19,7 @@
 						class="icon-bar"></span>
 				</button>
 				<!-- <a class="navbar-brand text-center center-block" href="#">Personal
-				Finance Planner</a> -->
+				Finance Planner</a>  -->
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
@@ -37,52 +37,29 @@
 	<div class="loading"></div>
 	<div class="container">
 		<div class="starter-template">
-			<h3>Dashboard Login</h3>
+		    <h3>User Login</h3> 
 			<div id="app" class="col-md-6 col-md-offset-3">
 			<hr/>
-			<!-- <button id="signInBtn" class="btn btn-default">Authenticate</button> -->
 			<form id="form">
 				<div class="form-group">
 					<label for="email">Email: </label>
-					<input class="form-control" id="email" type="text">
+					<input class="form-control" id="email" type="text" placeholder="Enter email...">
 				</div>
 				<div class="form-group">
 					<label for="password">Password: </label>
-					<input class="form-control" id="password" type="password">
+					<input class="form-control" id="password" type="password" placeholder="Enter password...">
 				</div>
-				<div class="alert alert-warning" style="display:none;padding:10px;"
-				role="alert">Email and password required!</div>
-				<div class="alert alert-danger" style="display:none;padding:10px;"
-				role="alert"></div>
-				<button class="btn btn-default" type="submit">Sign-In</button>&nbsp;
+				<div id="loginOutput"></div>
+				<hr/>
+				<button class="btn btn-default" id="signInSubmit" type="submit">Sign-In</button>
 				<button class="btn btn-default" id="signInGoogle">
-					<img src="img/google-icon.svg" height="15px" width="15px"/>
-					&nbsp;Google Sign-In
-				</button>
+				<img src="img/google-icon.svg" height="15px" width="15px"/>
+							&nbsp;Google Sign-In
+				</button>	
 			</form>
-			<hr/>
-				<div class="row">
-					<label for="register">Need to register?&nbsp;</label>
-					<button class="btn btn-default" id="register">Register Now</button>
-					<br/>
-				</div>
+			<button class="btn btn-default" id="register">Register Now</button>
 			</div>
 		</div>
-			<div class="row" id="dashboardMain" style="display: none">
-				<div class="col-sm-12 main">
-					<div class="page-header">
-					  <center><h2>Overview of Finances</h2></center>
-					</div>
-					<center><button id="runReport" class="btn btn-primary">Run Report</button></center>
-						<div class="row">
-							<div id="mainReport" class="col-sm-12 main" style="display:none">
-							<h4>Condition: 
-								<span id="conditionLabel" class="label label-success">Satisfactory</span>
-							</h4>
-							</div>
-						</div>				
-				</div>
-			</div>
 	</div>
 	<!-- /.container -->
 	
@@ -90,11 +67,52 @@
 	<div class="navbar navbar-default navbar-fixed-bottom footer">
 	</div>
 	
-	<!-- Dialog -->
-	<div id="dialog" title="Notification">
-  		<p id='dialogContent'></p>
-	</div>
-    
+	<!-- Add Report modal -->
+	<div class="modal fade" id="regDialogModal" tabindex="-1" role="dialog" aria-labelledby="regDialogModal" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" >Register New User</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form id="registerForm">
+				<div class="form-group">
+					<label for="emailReg">Email: </label>
+					<input class="form-control" id="emailReg" type="text">
+				</div>
+				<div class="form-group">
+					<label for="passwordReg">Password: </label>
+					<input class="form-control" id="passwordReg" type="password">
+				</div>
+				<div class="form-group">
+					<label for="userReg">User Name: </label>
+					<input class="form-control" id="userReg" type="text">
+				</div>
+				<div class="row">
+					<div class="form-group col-sm-8">
+						<label for="photoReg">Profile Avatar URL:</label>	
+						<input class="form-control" id="photoReg" type="text">
+					</div>
+					<div class="form-group col-sm-4">
+						<img id="avatarURLPhoto" src="https://fakeimg.pl/100x100/?text=No%20Photo" 
+						height="100px" width="100px" />
+					</div>
+				</div>
+				<div id="regOutput"></div>
+			</form>
+	      </div>
+	      <div class="modal-footer">
+	      	<div class="inputCheckForm"></div>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" id="submitRegister" class="btn btn-primary">Confirm</button>
+	      </div>
+	    </div>
+	  </div>
+	</div> 
+	
 	<!-- Scripts and dependencies -->
 	<script src="js/scripts/jquery-3.1.0.min.js"></script>
 	<script src="js/scripts/bootstrap.min.js"></script>

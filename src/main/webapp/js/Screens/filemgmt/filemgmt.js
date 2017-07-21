@@ -8,7 +8,7 @@ $( document ).ready(function() {
 			  //ensure user
 			  var user = getUser(userId, database);
 			  //current user info
-			  $("#userInfo").html(user.displayName);
+			  populateUserInfo(user);
 			  
 			  //listen and trigger file upload
 			  $('.browse').unbind("click").on('click', function(){
@@ -225,5 +225,13 @@ function isBusy(load) {
 		$(".loading").show();
 	} else {
 		$(".loading").hide();
+	}
+}
+
+function populateUserInfo(user) {
+	//current user info
+	$("#userInfo").html(user.displayName);
+	if(user.photoURL) {
+		$("#userInfoAvatar").attr("src", user.photoURL);
 	}
 }

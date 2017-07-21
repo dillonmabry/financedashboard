@@ -66,6 +66,7 @@ function populateUserInfo(user) {
 		  $("#photoUrl").val("Not Created");
 	  }  else {
 		  $("#photoUrl").val(user.photoURL);
+		  $("#userInfoAvatar").attr("src", user.photoURL);
 	  }
 	  $("#emailPref").val(user.email);
 	  $("#userId").val(user.uid);
