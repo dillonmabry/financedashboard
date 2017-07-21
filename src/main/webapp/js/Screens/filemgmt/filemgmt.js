@@ -233,5 +233,7 @@ function populateUserInfo(user) {
 	$("#userInfo").html(user.displayName);
 	if(user.photoURL) {
 		$("#userInfoAvatar").attr("src", user.photoURL);
+	} else {
+		$("#userInfoAvatar").attr("src", "http://via.placeholder.com/50x50&text=No%20Avatar");
 	}
 }
