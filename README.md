@@ -2,6 +2,12 @@
 ### Known Issues:
 - Dropdown for reports is not sorted
 - Dropdown does not stay on current new report when adding new report
-- Delete bug with max stack overflow 
-- User input validation bugs with login/registering, though most are fixed
-- Others TBD
+- No support for multiple file uploads currently, will be added
+- Page must refresh upon new report creation or deletion
+
+### Future Enhancements:
+- Bulk upload of pay periods
+- Enhanced graphs and analytics
+- Support of multiple file uploads
+- Ability to link file uploads as report pictures to actual finance reports
+- More, more, more!
