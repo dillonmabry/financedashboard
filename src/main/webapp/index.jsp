@@ -20,31 +20,44 @@
 				</button>
 				<img src="img/finance-logo.png" class="brand-logo"/>
 			</div>
+			<div class="collapse navbar-collapse">
+				<form id="form" class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input class="form-control" id="email" type="text" placeholder="Email...">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" id="password" type="password" placeholder="Password...">
+                    </div>
+                    <button class="btn btn-primary" id="signInSubmit" type="submit">Sign-In</button>
+                    <button class="btn btn-default" id="signInGoogle">
+						<img src="img/google-icon.svg" height="15px" width="15px"/>
+									&nbsp;Google Sign-In
+					</button>	
+                </form>
+			</div>
+			<!--/.nav-collapse -->
 		</div>
 	</div>
 	<div class="loading"></div>
 	<div class="container">
 		<div class="starter-template">
 			<div id="app" class="col-md-6 col-md-offset-3 form-well">
-			<h3>Existing/New Users</h3>
+			<h3>Experience Individual Finance</h3>
+			<h5>Tailored, personalized options to fit <strong>you</strong></h5>
 			<hr/>
-			<form id="form">
+			<form id="registerForm">
 				<div class="form-group">
-					<input class="form-control" id="email" type="text" placeholder="Email...">
+					<input class="form-control" id="emailReg" type="text" placeholder="Email...">
 				</div>
 				<div class="form-group">
-					<input class="form-control" id="password" type="password" placeholder="Password...">
+					<input class="form-control" id="passwordReg" type="password" placeholder="Password...">
 				</div>
-				<div id="loginOutput"></div>
-				<button class="btn btn-primary" id="signInSubmit" type="submit">Sign-In</button>
-				<button class="btn btn-default" id="signInGoogle">
-				<img src="img/google-icon.svg" height="15px" width="15px"/>
-							&nbsp;Google Sign-In
-				</button>	
+				<div class="form-group">
+					<input class="form-control" id="userReg" type="text" placeholder="User Name...">
+				</div>
+				<div id="regOutput"></div>
 			</form>
-			<hr/>
-			<label>Need to register?</label>
-			<button class="btn btn-default" id="register">Register Now</button>
+			<button class="btn btn-primary" id="register">Register Now</button>
 			</div>
 		</div>
 	</div>
@@ -55,7 +68,7 @@
 	</div>
 	
 	<!-- Add Report modal -->
-	<div class="modal fade" id="regDialogModal" tabindex="-1" role="dialog" aria-labelledby="regDialogModal" aria-hidden="true">
+	<!-- <div class="modal fade" id="regDialogModal" tabindex="-1" role="dialog" aria-labelledby="regDialogModal" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -98,7 +111,7 @@
 	      </div>
 	    </div>
 	  </div>
-	</div> 
+	</div>  -->
 	
 	<!-- Scripts and dependencies -->
 	<script src="js/scripts/jquery-3.1.0.min.js"></script>
