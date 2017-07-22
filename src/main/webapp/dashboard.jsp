@@ -23,8 +23,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<!-- <a class="navbar-brand text-center center-block" href="#">Personal
-				Finance Planner</a> -->
+				<img src="img/logo-main.png" class="brand-sm-logo"/>
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
