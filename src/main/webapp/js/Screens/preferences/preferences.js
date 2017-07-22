@@ -64,7 +64,9 @@ function populateUserInfo(user) {
 	  }
 	  if(user.photoURL == null) {
 		  $("#photoUrl").val("Not Created");
-		  $("#userInfoAvatar").attr("src", "http://via.placeholder.com/50x50&text=No%20Avatar");
+		  $("#userInfoAvatar").attr("src", "img/new-user-icon.png");
+	  } else if(user.photoURL == 'Not Created') {
+			$("#userInfoAvatar").attr("src", "img/new-user-icon.png");
 	  }  else {
 		  $("#photoUrl").val(user.photoURL);
 		  $("#userInfoAvatar").attr("src", user.photoURL);

@@ -8,7 +8,7 @@
 <link href="css/dashboard.css" rel="stylesheet"> 
 <link href="css/toastr.min.css" rel="stylesheet">
 </head>
-<body>
+<body style="background: url(img/background-snow.png) no-repeat center center fixed; background-size: cover;">
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
@@ -37,8 +37,8 @@
 	<div class="loading"></div>
 	<div class="container">
 		<div class="starter-template">
-		    <h3>User Login</h3> 
-			<div id="app" class="col-md-6 col-md-offset-3">
+			<div id="app" class="col-md-6 col-md-offset-3 form-well">
+			<h3>User Login</h3> 
 			<hr/>
 			<form id="form">
 				<div class="form-group">
