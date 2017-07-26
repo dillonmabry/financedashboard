@@ -76,10 +76,13 @@
         
         // Listen to auth state changes
         firebase.auth().onAuthStateChanged(function(user) {
+        	isBusy(true);
         	 // if logged in
         	 if(user) { 
         		 onSignIn(user);
+        		 isBusy(false);
         	 } 
+        	 isBusy(false);
         });
       })();
 

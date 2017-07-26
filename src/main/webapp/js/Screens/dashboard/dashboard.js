@@ -17,12 +17,12 @@ function getDashboard(user, database) {
 		if(snapshot.val() == null) {
 			return false;
 		}		
+		
 	    //get pay periods/reports
 		var reports = snapshot.val().balance_reports;
 		var periods;
 		var datePeriods = [];
-	    var startPeriod, endPeriod;
-	    
+		
 	    //get pay periods of selected report
 	    var currentReport = getReport();
 	    
@@ -56,6 +56,12 @@ function getDashboard(user, database) {
         });
 	    $("#mainTable_filter input").addClass("form-control");
 	    
+	    //get Google charts setup
+	    //load charts
+	    google.charts.load('current', {'packages':['corechart']});
+	    google.charts.setOnLoadCallback(drawChart)
+	    var chartData = [];
+	    
 	    if(periods != null) {
 	    //populate condition and main table with pay periods
 	    for (var key in periods) {
@@ -79,6 +85,11 @@ function getDashboard(user, database) {
 	    	    	expenses.toFixed(2),
 	    	    	postExpenses.toFixed(2)
 	    	    ] ).draw();
+	    	    //populate chart data for one year
+	    	    var lastDay = new Date(new Date().getFullYear(), 11, 31);
+	    	    if(new Date(key) < lastDay){
+	    	    	chartData.push([new Date(key),postExpenses])
+	    	    }
 	    	  }
 	    	}
 		    var sortedDates = datePeriods;
@@ -100,7 +111,7 @@ function getDashboard(user, database) {
 				$("#conditionLabel").html("Condition: <span class='label label-danger'>Critical</span>");
 			}
 	    	//set report range info period
-	    	$("#reportRange").html("Start Period: "+datePeriods[0].key+"<br/><br/>End Period: "
+	    	$("#reportRange").html("<br/>Start Period: "+datePeriods[0].key+"<br/><br/>End Period: "
 	    			+datePeriods[datePeriods.length-1].key);  
 	    	
 		    //listen to table row selection	
@@ -139,8 +150,93 @@ function getDashboard(user, database) {
 	    	//else periods null
 	    	$("#conditionLabel").html("Condition: <span class='label label-info'>No Condition Available</span>");
 	    }
+
+	    //draw personalized chart
+	    function drawChart() {
+
+	        var data = new google.visualization.DataTable();
+	        data.addColumn('date', 'Date');
+	        data.addColumn('number', 'Savings (USD)');
+
+	        for(var i=0; i < chartData.length; i++) {
+	        	data.addRows([
+	        	              [chartData[i][0], chartData[i][1]]
+	        	]);
+	        }
+	        var options;
+	        if(chartData.length <= 1) {        
+		        options = {
+		        	legend: { 
+		        		    position : 'none'
+		        	},
+		          title: 'Monthly Savings',
+		          hAxis: {
+		              format: 'MMM dd',
+		              gridlines: {count: 1},
+		              direction:1, 
+	  		          slantedText:true, 
+	  		          slantedTextAngle:45
+		            },
+		            vAxis: {
+		              gridlines: {color: 'none'},
+		              minValue: 0,
+		            },
+		          width: 550,
+		          height: 240,
+		          chartArea: { width: "65%", height: "65%"}
+		        };
+	        } else {
+	        	options = {
+	        			legend: { 
+		        		    position : 'none'
+		        	},
+	  		          title: 'Monthly Savings',
+	  		          hAxis: {
+	  		              format: 'MMM dd',
+	  		              gridlines: {count: 15},
+	  		            direction:1, 
+	  		            slantedText:true, 
+	  		            slantedTextAngle:45
+	  		            },
+	  		            vAxis: {
+	  		              gridlines: {color: 'none'},
+	  		              minValue: 0,
+	  		            },
+	  		          width: 550,
+	  		          height: 240,
+	  		          chartArea: { width: "70%", height: "65%"}
+	  		        };
+	        }
+	       var chart = new google.visualization.LineChart(document.getElementById('mainChart'));
+	       chart.draw(data, options);
+	      }
+	    
+	      /*google.charts.setOnLoadCallback(drawDonut);
+	      function drawDonut() {
+	        var data = google.visualization.arrayToDataTable([
+	          ['Task', 'Hours per Day'],
+	          ['Work',     11],
+	          ['Eat',      2],
+	          ['Commute',  2],
+	          ['Watch TV', 2],
+	          ['Sleep',    7]
+	        ]);
+
+	        var options = {
+	          title: 'Spending Ratios',
+	          pieHole: 0.4,
+	          width: 375,
+		      height: 225,
+		      chartArea: { width: "70%", height: "65%"},
+		      colors: ['#316DA2', '#3D8ACE', '#479DEA', '#50ACFF', '#A5D3FE']
+	        };
+
+	        var chart = new google.visualization.PieChart(document.getElementById('secondaryChart'));
+	        chart.draw(data, options);
+	      }*/
 	  });
 }
+/* --------------------------------- END DASHBOARD ----------------------------------*/
 
 function getReport() {
 	var currRep = $("#reportSelect").val();

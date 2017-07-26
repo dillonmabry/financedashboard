@@ -36,7 +36,7 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="text-right">
-						<div class="inset">
+						<div class="inset userInfo">
 							<a id="userInfo" class="text-muted"></a>
 							<img id="userInfoAvatar" />
 						</div>
@@ -49,7 +49,7 @@
 			<!--/.nav-collapse -->
 		</div>
 	</div>
-	<div class="loading"></div>
+	<div class="loading"><img src="img/ajaxloader.gif"/></div>
 	<div class="container">
 		<div class="row" id="dashboardMain">
 			<div id="main" class="col-sm-12 main">
@@ -58,22 +58,29 @@
 						<h3>Overview of Finances</h3>
 					</center>
 				</div>
-				<div class="col-sm-4">
-					<div class="form-group">
-						<label for="reportSelect">Selected report:</label> <select
-							class="form-control" id="reportSelect"></select>
-					</div>
-					<button id='addNewReport' class="btn btn-primary pull-left">
-						<span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Add New Report
-					</button>&nbsp;
-					<button id='deleteReport' class="btn btn-default text-center">
-						<span class="glyphicon glyphicon-remove"></span>&nbsp;Delete Report
-					</button>
-				</div>
-				<div class="col-sm-8">
-				<br/>
-					<div class="form-group text-right">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="reportSelect">Selected report:</label> <select
+								class="form-control" id="reportSelect"></select>
+						</div>
+						<button id='addNewReport' class="btn btn-primary">
+							<span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Add Report
+						</button>&nbsp;
+						<button id='deleteReport' class="btn btn-default">
+							<span class="glyphicon glyphicon-remove"></span>&nbsp;Delete Report
+						</button>
 						<label id="reportRange"></label>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group text-center">
+							<div id="mainChart"></div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group pull-right">
+							<div id="secondaryChart"></div>
+						</div>
 					</div>
 				</div>
 				<!-- <button id='runReport' class="btn btn-primary center-block">Run Report</button> -->
@@ -250,6 +257,7 @@
 	<!-- Scripts and dependencies -->
 	<script src="js/scripts/jquery-3.1.0.min.js"></script>
 	<script src="js/scripts/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-auth.js"></script>

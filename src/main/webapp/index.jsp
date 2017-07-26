@@ -4,7 +4,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Personal Finance Dashboard</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<!-- <link href="css/main-theme.min.css" rel="stylesheet"> -->
 <link href="css/dashboard.css" rel="stylesheet"> 
 <link href="css/toastr.min.css" rel="stylesheet">
 </head>
@@ -64,55 +63,26 @@
 	<!-- /.container -->
 	
 	<!-- Footer -->
-	<div class="navbar navbar-default navbar-fixed-bottom footer">
-	</div>
-	
-	<!-- Add Report modal -->
-	<!-- <div class="modal fade" id="regDialogModal" tabindex="-1" role="dialog" aria-labelledby="regDialogModal" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" >Register New User</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	        <form id="registerForm">
-				<div class="form-group">
-					<label for="emailReg">Email: </label>
-					<input class="form-control" id="emailReg" type="text">
-				</div>
-				<div class="form-group">
-					<label for="passwordReg">Password: </label>
-					<input class="form-control" id="passwordReg" type="password">
-				</div>
-				<div class="form-group">
-					<label for="userReg">User Name: </label>
-					<input class="form-control" id="userReg" type="text">
-				</div>
-				<div class="row">
-					<div class="form-group col-sm-8">
-						<label for="photoReg">Profile Avatar URL:</label>	
-						<input class="form-control" id="photoReg" type="text">
+	<footer id="site-footer" class="navbar-fixed-bottom">
+		<div class="container">
+			<div class="row">
+					<div id="footer-navigation">
+						<ul id="menu-footer" class="text-center">
+							<li class="footer-item">
+								<img class="brand-sm-logo" src="img/finance-logo-sm.png"/><span>&copy;&nbsp;2017</span>
+							</li>
+							<li class="footer-item mainItem"><a href="" class="">About</a>
+							</li>
+							<li class="footer-item mainItem"><a href="" class="">Donate</a></li>
+							<li class="footer-item mainItem"><a href="" class="">Contact Us</a></li>
+							<li class="footer-item mainItem"><a href="" class="">Terms and Conditions</a></li>
+						</ul>
 					</div>
-					<div class="form-group col-sm-4">
-						<img id="avatarURLPhoto" src="https://fakeimg.pl/100x100/?text=No%20Photo" 
-						height="100px" width="100px" />
-					</div>
-				</div>
-				<div id="regOutput"></div>
-			</form>
-	      </div>
-	      <div class="modal-footer">
-	      	<div class="inputCheckForm"></div>
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" id="submitRegister" class="btn btn-primary">Confirm</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>  -->
-	
+			</div>
+		</div>
+	</footer> 
+
+
 	<!-- Scripts and dependencies -->
 	<script src="js/scripts/jquery-3.1.0.min.js"></script>
 	<script src="js/scripts/bootstrap.min.js"></script>

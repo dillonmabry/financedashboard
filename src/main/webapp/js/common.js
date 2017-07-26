@@ -14,7 +14,6 @@ $(document).ready(function(){
 			pushReports(userId);
 			//generate dashboard for user
 			getDashboard(user, database);
-			isBusy(false);
 			// listen to report selection
 			$("#reportSelect").on("change", function() {
 				$("#deletePeriod").hide();
@@ -24,7 +23,7 @@ $(document).ready(function(){
 				getDashboard(user, database);
 				isBusy(false);
 			});
-			
+			isBusy(false);
 		}
 	});
 
@@ -44,7 +43,6 @@ function getUser() {
 
 //load reports
 function pushReports(userId) {
-	isBusy(true);
 	//monitor/load report changes
   	var reportRef = firebase.database().ref('reports/' + userId);
 	reportRef.on('value', function(snapshot) {
