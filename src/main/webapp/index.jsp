@@ -32,6 +32,10 @@
 						<img src="img/google-icon.svg" height="15px" width="15px"/>
 									&nbsp;Google Sign-In
 					</button>	
+	                <span>
+		                <input type="checkbox" name="checkboxG1" id="checkboxG1" class="css-checkbox" />
+		                <label for="checkboxG1" class="css-label">Remember Me</label>
+	                </span> 
                 </form>
 			</div>
 			<!--/.nav-collapse -->
@@ -69,13 +73,13 @@
 					<div id="footer-navigation">
 						<ul id="menu-footer" class="text-center">
 							<li class="footer-item">
-								<img class="brand-sm-logo" src="img/finance-logo-sm.png"/><span>&copy;&nbsp;2017</span>
+								<img class="brand-sm-ft" src="img/finance-logo-sm.png"/><span>&copy;&nbsp;2017</span>
 							</li>
-							<li class="footer-item mainItem"><a href="" class="">About</a>
+							<li class="footer-item mainItem" id="about-ft">About
 							</li>
-							<li class="footer-item mainItem"><a href="" class="">Donate</a></li>
-							<li class="footer-item mainItem"><a href="" class="">Contact Us</a></li>
-							<li class="footer-item mainItem"><a href="" class="">Terms and Conditions</a></li>
+							<li class="footer-item mainItem" id="donate-ft">Donate</li>
+							<li class="footer-item mainItem" id="contact-ft">Contact Us</li>
+							<li class="footer-item mainItem" id="terms-ft">Terms and Conditions</li>
 						</ul>
 					</div>
 			</div>

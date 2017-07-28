@@ -20,6 +20,10 @@ h3{
 	border-radius:3px;
 }
 
+#signInGoogle {
+	margin-right:5px;
+}
+
 .starter-template {
   padding: 90px 15px;
   text-align: center;
@@ -43,6 +47,12 @@ h3{
 }
 
 .brand-sm-logo {
+	max-height:50px;
+	margin-top:5px;
+	margin-right:5px;
+}
+
+.brand-sm-ft {
 	max-height:50px;
 	margin-top:-5px;
 	margin-right:5px;
@@ -212,15 +222,18 @@ ul#menu-footer {
 }
 
 
-.sub-footer-item a, .footer-item a {
+.sub-footer-item, .footer-item {
     color: rgb(230,230,230);
     font-size:1em;
     text-decoration:none;
       
 }
 
-.sub-footer-item a:hover, .footer-item a:hover {
+.sub-footer-item.mainItem:hover, .footer-item.mainItem:hover {
     color:#fff;
+    background-color:rgba(0, 0, 0, 0.3);
+    border-radius:1px;
+    border-color: rgba(255, 255, 255, 0.1); 
 }
 
 .footer-item {
@@ -246,7 +259,7 @@ ul#menu-footer {
     float:center;
     width:90%;    
     table-layout: fixed;
-    
+    color: #fff;
 }
 }
     
@@ -255,11 +268,53 @@ ul#menu-footer {
     ul#menu-footer>li {
     display:table-cell;
     list-style:none;
-    color:rgb(255,255,255);
     text-align:center;
     padding:0px;
-    margin:0px;  
-    
+    margin:0px; 
+    color: #fff; 
 }
+}
+/*------ checkbox css------ */
+input[type=checkbox].css-checkbox {
+	position: absolute;
+	z-index: -1000;
+	left: -1000px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	width: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
 }
 
+input[type=checkbox].css-checkbox+label.css-label {
+	padding-left: 25px;
+	height: 20px;
+	display: inline-block;
+	line-height: 20px;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	font-size: 12px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+input[type=checkbox].css-checkbox:checked+label.css-label {
+	background-position: 0 -20px;
+}
+
+label.css-label {
+	background-image:
+		url(../img/css-checkbox.png);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.css-label {
+	margin-top:5px;
+}

@@ -1,35 +1,101 @@
 (function() {
-	if (document.cookie.indexOf('visited=true') == -1) {
-		// on first visit
-		$("<div class=\"modal fade\" id=\"welcomeModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"welcomeModal\" aria-hidden=\"false\">\r\n" + 
-			"	  <div class=\"modal-dialog\" role=\"document\">\r\n" + 
-			"	    <div class=\"modal-content text-center\">\r\n" + 
-			"	      <div class=\"modal-header\">\r\n" + 
-			"	        <h5 class=\"modal-title\" ><strong>Welcome to Personal Finance Planner!</strong></h5>\r\n" + 
-			"	        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n" + 
-			"	          <span aria-hidden=\"true\">&times;</span>\r\n" + 
-			"	        </button>\r\n" + 
-			"	      </div>\r\n" + 
-			"	      <div class=\"modal-body\">\r\n" + 
-			"	        <br/><p>This application allows quick changes to personal finance goals as well as tracking bulk status of finances.</p>\r\n" + 
-			"	      </div>\r\n" + 
-			"	      <div class=\"modal-footer\">\r\n" + 
-			"	        <button type=\"button\" id=\"dismissWelcome\" class=\"btn btn-primary\" data-dismiss=\"modal\">Ok never show me this again</button>\r\n" + 
-			"	      </div>\r\n" + 
-			"	    </div>\r\n" + 
-			"	  </div>\r\n" + 
-			"	</div>").appendTo(document.body);
-		
-		$('#welcomeModal').modal({backdrop: 'static', keyboard: true})  
-		$("#welcomeModal").modal("show");
-	}
+		if (document.cookie.indexOf('visited=true') == -1) {
+			// on first visit
+			$("<div class=\"modal fade\" id=\"welcomeModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"welcomeModal\" aria-hidden=\"false\">\r\n" + 
+				"	  <div class=\"modal-dialog\" role=\"document\">\r\n" + 
+				"	    <div class=\"modal-content text-center\">\r\n" + 
+				"	      <div class=\"modal-header\">\r\n" + 
+				"	        <h5 class=\"modal-title\" ><strong>Welcome to Personal Finance Planner!</strong></h5>\r\n" + 
+				"	        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n" + 
+				"	          <span aria-hidden=\"true\">&times;</span>\r\n" + 
+				"	        </button>\r\n" + 
+				"	      </div>\r\n" + 
+				"	      <div class=\"modal-body\">\r\n" + 
+				"	        <br/><p>This application allows quick changes to personal finance goals as well as tracking bulk status of finances.</p>\r\n" + 
+				"	      </div>\r\n" + 
+				"	      <div class=\"modal-footer\">\r\n" + 
+				"	        <button type=\"button\" id=\"dismissWelcome\" class=\"btn btn-primary\" data-dismiss=\"modal\">Ok never show me this again</button>\r\n" + 
+				"	      </div>\r\n" + 
+				"	    </div>\r\n" + 
+				"	  </div>\r\n" + 
+				"	</div>").appendTo(document.body);
+			
+			$('#welcomeModal').modal({keyboard: true})  
+			$("#welcomeModal").modal("show");
+			$('#welcomeModal').on('hidden.bs.modal', function () {
+  				$(this).remove();
+  			})
+		}
 		// set cookies
 		$("#dismissWelcome").click(function(){
 			var oneYear = 1000*60*60*24*365;
             var expires = new Date((new Date()).valueOf() + oneYear);
             document.cookie = "visited=true;expires=" + expires.toUTCString();
     		$("#welcomeModal").modal("hide");
+  		    $(this).remove();
 		});	
+		
+		//remember email/pass for login
+			if (localStorage.chkbx && localStorage.chkbx != '') {
+                $('#checkboxG1').attr('checked', 'checked');
+                $('#email').val(localStorage.usrname);
+                $('#password').val(localStorage.pass);
+            } else {
+                $('#checkboxG1').removeAttr('checked');
+                $('#email').val('');
+                $('#password').val('');
+            }
+
+            $('#checkboxG1').click(function() {
+            	if( $('#email').val() && $('#password').val() ) {
+	                if ($('#checkboxG1').is(':checked')) {
+	                    // save username and password
+	                    localStorage.usrname = $('#email').val();
+	                    localStorage.pass = $('#password').val();
+	                    localStorage.chkbx = $('#checkboxG1').val();
+	                } else {
+	                    localStorage.usrname = '';
+	                    localStorage.pass = '';
+	                    localStorage.chkbx = '';
+	                }
+            	} else {
+            		toastInfo("Info","Enter username/password to save info", "info") 
+            		return false;
+            	}
+            });
+            
+          /* Contact information handles */
+          $("#about-ft").click(function(){
+        	  $("<div class=\"modal fade\" id=\"welcomeModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"welcomeModal\" aria-hidden=\"false\">\r\n" + 
+      				"	  <div class=\"modal-dialog\" role=\"document\">\r\n" + 
+      				"	    <div class=\"modal-content text-center\">\r\n" + 
+      				"	      <div class=\"modal-header\">\r\n" + 
+      				"	        <h5 class=\"modal-title\" ><strong>Welcome to Personal Finance Planner!</strong></h5>\r\n" + 
+      				"	        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n" + 
+      				"	          <span aria-hidden=\"true\">&times;</span>\r\n" + 
+      				"	        </button>\r\n" + 
+      				"	      </div>\r\n" + 
+      				"	      <div class=\"modal-body\">\r\n" + 
+      				"	        <br/><p>This application allows quick changes to personal finance goals as well as tracking bulk status of finances.</p>\r\n" + 
+      				"	      </div>\r\n" + 
+      				"	      <div class=\"modal-footer\">\r\n" + 
+      				"			<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"+
+      				"	        <button type=\"button\" id=\"dismissWelcome\" class=\"btn btn-primary\" data-dismiss=\"modal\">Ok</button>\r\n" + 
+      				"	      </div>\r\n" + 
+      				"	    </div>\r\n" + 
+      				"	  </div>\r\n" + 
+      				"	</div>").appendTo(document.body);
+      			
+      			$('#welcomeModal').modal({ keyboard: true})  
+      			$("#welcomeModal").modal("show");
+      			$('#welcomeModal').on('hidden.bs.modal', function () {
+      				$(this).remove();
+      			});
+          });
+		
+		
+		
+/* ---------------------- AUTHENTICATION ------------------------------------*/		
 		// app query selector
         var app = document.querySelector('#app');
         
@@ -86,6 +152,7 @@
         });
       })();
 
+/*----------------------- END AUTH ----------------------------------*/
 	//register new user
 	function registerNewUser() {
 		// process registration logic
