@@ -66,7 +66,7 @@
             
           /* Contact information handles */
           $("#about-ft").click(function(){
-        	  $("<div class=\"modal fade\" id=\"welcomeModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"welcomeModal\" aria-hidden=\"false\">\r\n" + 
+        	  $("<div class=\"modal fade contactModal\" data-backdrop=\"false\" id=\"welcomeModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"welcomeModal\" aria-hidden=\"false\">\r\n" + 
       				"	  <div class=\"modal-dialog\" role=\"document\">\r\n" + 
       				"	    <div class=\"modal-content text-center\">\r\n" + 
       				"	      <div class=\"modal-header\">\r\n" + 
@@ -76,7 +76,15 @@
       				"	        </button>\r\n" + 
       				"	      </div>\r\n" + 
       				"	      <div class=\"modal-body\">\r\n" + 
-      				"	        <br/><p>This application allows quick changes to personal finance goals as well as tracking bulk status of finances.</p>\r\n" + 
+      				"	        <br/><p>This application allows quick changes to personal finance goals as well as tracking bulk status of finances.</p> " +
+      				"			<p><strong>Currencies supported:</strong><p>" +
+      				"			<p><i class=\"fa fa-dollar fa-mon text-success\" style=\"font-size:24px\"></i>" +
+      				"			</p>" +
+      				"			<p><strong>Coming Soon:</strong><p>" +
+      				"			<p>" +
+      				"			<i class=\"fa fa-eur fa-mon text-warning\" style=\"font-size:24px\"></i></p>" +
+      				"			</p>"+
+      				"			<p><strong>Register now to get started by filling in the information then you will be logged in to start planning!</strong></p>\r\n" + 
       				"	      </div>\r\n" + 
       				"	      <div class=\"modal-footer\">\r\n" + 
       				"			<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"+
@@ -86,7 +94,7 @@
       				"	  </div>\r\n" + 
       				"	</div>").appendTo(document.body);
       			
-      			$('#welcomeModal').modal({ keyboard: true})  
+      			$('#welcomeModal').modal({ backdrop:'static', keyboard: true})
       			$("#welcomeModal").modal("show");
       			$('#welcomeModal').on('hidden.bs.modal', function () {
       				$(this).remove();

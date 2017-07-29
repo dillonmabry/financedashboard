@@ -1,7 +1,8 @@
 getVersion().done(function(manifestVersion) {
+		var currYear = new Date().getFullYear();
 	    $(".footer").html(
 	    		'<div class="container text-center">'+
-	  	      '<p class="navbar-text navbar-center">Personal Finance Planner 2017 - '+manifestVersion+
+	  	      '<p class="navbar-text navbar-center">Personal Finance Planner '+currYear+' - '+manifestVersion+
 	  	      '</p>'+
 	  	    '</div>'
 		)

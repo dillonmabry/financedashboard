@@ -362,7 +362,7 @@ $("#deleteReport").click(function(){
 			"	        <p>Are you sure you wish to delete?</p>\r\n" + 
 			"	      </div>\r\n" + 
 			"	      <div class=\"modal-footer\">\r\n" + 
-			"	        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n" + 
+			"	        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\r\n" + 
 			"	        <button type=\"button\" id=\"confirmDeleteReport\" class=\"btn btn-primary\">Delete</button>\r\n" + 
 			"	      </div>\r\n" + 
 			"	    </div>\r\n" + 

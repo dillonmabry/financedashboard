@@ -6,6 +6,7 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/dashboard.css" rel="stylesheet"> 
 <link href="css/toastr.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body style="background: url(img/background.jpg) no-repeat center center fixed; background-size: cover;">
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -32,6 +33,9 @@
 						<img src="img/google-icon.svg" height="15px" width="15px"/>
 									&nbsp;Google Sign-In
 					</button>	
+					<!-- <label class="checkbox">
+	                    <h6><input type="checkbox" value="remember-me" id="remember_me">&nbsp;Remember Me</h6>
+	                </label> -->
 	                <span>
 		                <input type="checkbox" name="checkboxG1" id="checkboxG1" class="css-checkbox" />
 		                <label for="checkboxG1" class="css-label">Remember Me</label>
@@ -73,11 +77,16 @@
 					<div id="footer-navigation">
 						<ul id="menu-footer" class="text-center">
 							<li class="footer-item">
-								<img class="brand-sm-ft" src="img/finance-logo-sm.png"/><span>&copy;&nbsp;2017</span>
+								<img class="brand-sm-ft" src="img/finance-logo-sm.png"/>
+								<span class="currentYear"></span>
+							</li>
+							<li class="footer-item" id="donate-ft">
+								<img src="img/social-icons/Github.png" class="social"/>
+								<img src="img/social-icons/Linkedin.png" class="social"/>
+								<img src="img/social-icons/Facebook.png" class="social"/>
 							</li>
 							<li class="footer-item mainItem" id="about-ft">About
 							</li>
-							<li class="footer-item mainItem" id="donate-ft">Donate</li>
 							<li class="footer-item mainItem" id="contact-ft">Contact Us</li>
 							<li class="footer-item mainItem" id="terms-ft">Terms and Conditions</li>
 						</ul>
@@ -107,6 +116,8 @@
 	    }
 	    e.preventDefault();
 	});
+	var currYear = new Date().getFullYear();
+	$(".currentYear").html("&copy;&nbsp;2017");
 	</script>
 </body>
 </html>

@@ -234,6 +234,7 @@ ul#menu-footer {
     background-color:rgba(0, 0, 0, 0.3);
     border-radius:1px;
     border-color: rgba(255, 255, 255, 0.1); 
+    cursor:pointer;
 }
 
 .footer-item {
@@ -274,6 +275,24 @@ ul#menu-footer {
     color: #fff; 
 }
 }
+
+.social {
+	height:40px;
+	width:40px;
+	cursor:pointer;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+.social:hover {
+	opacity:0.8;
+}
+
+.fa-mon {
+	margin-left:10px;
+	margin-right:10px;
+}
+
 /*------ checkbox css------ */
 input[type=checkbox].css-checkbox {
 	position: absolute;
@@ -317,4 +336,9 @@ label.css-label {
 
 .css-label {
 	margin-top:5px;
+}
+
+/* contact modals */
+.contactModal {
+	top:10%;
 }
