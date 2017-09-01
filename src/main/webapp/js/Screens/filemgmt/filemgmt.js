@@ -156,7 +156,7 @@ function updateTable(user) {
 		    	    	files[key].content_type,
 		    	    	fileSizeInMB,
 		    	    	moment(files[key].time_created).format("MM-DD-YYYY"),
-		    	    	"<a href='"+files[key].download_url+"'>Download</a>"
+		    	    	"<a href='"+files[key].download_url+"'><span class='btn btn-primary glyphicon glyphicon-download-alt'></span></a>"
 		    	    ] ).draw();
 				}
 			}
