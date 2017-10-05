@@ -3,7 +3,6 @@
 - Dropdown for reports is not sorted
 - Dropdown does not stay on current new report when adding new report
 - No support for multiple file uploads currently, will be added
-- Page must refresh upon new report creation or deletion
 
 ### Future Enhancements:
 - Bulk upload of pay periods
